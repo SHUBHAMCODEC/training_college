@@ -34,7 +34,7 @@ public class commonIn3Sorted{
 
         System.out.println(ls);
 
-    }
+    }   
     public static void main(String[] args){
         int a[]=/*{1, 5, 10, 20, 40, 80};*/             {1, 2, 3, 4, 5};
         int b[]=/*{6, 7, 20, 80, 100};*/                {7,10,14};
