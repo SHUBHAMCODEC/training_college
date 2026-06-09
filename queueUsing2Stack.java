@@ -8,7 +8,7 @@ public class queueUsing2Stack {
     static Stack<Integer> s3 = new Stack<>();
     static Stack<Integer> s4 = new Stack<>();
 
-   
+   // below two function give pop complexity: O(n) and push : O(1)
     public static void push(int i) {
         s1.push(i);
     }
@@ -20,22 +20,15 @@ public class queueUsing2Stack {
             System.out.println("Queue is empty");
             return -1; 
         }       
-        while (!s1.isEmpty()) {
+       if(s1.isEmpty()){
+            while(!s1.isEmpty()){
                 s2.push(s1.pop());
-        }
-       int k=s2.pop();
+            }
+       }
 
-       Stack<Integer> temp=s1;
-       s1=s2;
-       s2=temp;
-
-        
-        return k;
-
-       
-      
+       return s2.pop();
     }
-
+// below two function give pop complexity: O(1) and push : O(n)
     private static void push2(int a){
 
         while(!s3.isEmpty()){
