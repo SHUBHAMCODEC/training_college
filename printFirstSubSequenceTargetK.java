@@ -15,7 +15,7 @@ public class printFirstSubSequenceTargetK {
         // 1. Take the current element
         ls.add(arr[index]);
         sum += arr[index];
-        if (helper(index + 1, arr, sum, ls, n, k)) {
+        if (helper(index + 1, arr, sum, ls, n, k)) {// function
             return true; // Avoid further recursion if subset is found
         }
         
