@@ -27,6 +27,6 @@ public class subArraySumWithKsize {
     public static void main(String[] args) {// main function
         int arr[] = {1, 5, 6, 8, 2, 3, 4, 7, 10, 15, 11, 17, 13}; //given array 
         int k = 3;
-        System.out.println("sum is " + helper(arr, k)); 
+        System.out.println("sum is " + helper(arr, k)); // system call for program
     }
 }
