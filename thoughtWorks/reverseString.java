@@ -1,5 +1,5 @@
 package thoughtWorks;
-
+import java.util.*;
 public class reverseString {
     private static void helper(String str){
 
@@ -13,7 +13,7 @@ public class reverseString {
             low++;high--;
          }
 
-         System.out.println(new String(s));
+         System.out.println("reverse String : "+new String(s));
     }
     
 
@@ -29,6 +29,23 @@ public class reverseString {
         return true;
     }
 
+    private static void duplicates(String str){
+        HashMap<Character,Integer> map=new HashMap<>();
+        char c='n';
+        for(char ch:str.toCharArray()){
+            map.put(ch,map.getOrDefault(ch,0)+1);
+        }
+
+        for(int i=0;i<str.length();i++){
+            c=str.charAt(i);
+            if(map.get(c)>1){
+                System.out.println("First duplicate Character is : "+ c);
+                return;
+            }
+        }
+
+    }
+
     public static void main(String[] args){
         String s=new String("Shubham");
 
@@ -37,5 +54,8 @@ public class reverseString {
        System.out.println( helper2(s));
         String s2=new String("naman");
         System.out.println(helper2(s2));
+
+        duplicates(s);
+        duplicates(s2);
     }
 }
