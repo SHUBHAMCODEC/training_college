@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class printAllPermutation {
 
-    private static void recurNumber(int[] arr, int i){
+    private static void recurNumber(int[] arr, int i){ // function for generating permutation of numbers
         if(i==arr.length){
             System.out.println(Arrays.toString(arr));
             return;
