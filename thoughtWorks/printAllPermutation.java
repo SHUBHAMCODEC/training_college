@@ -24,7 +24,7 @@ public class printAllPermutation {
     }
 
 
-    private static void recurString(String s,String str){
+    private static void recurString(String s,String str){ // function for generating permutation of strings
         if(s.length()==0){
             System.out.println(str);
             return;
