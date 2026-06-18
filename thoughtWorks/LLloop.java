@@ -105,10 +105,60 @@ public class LLloop {
         }
         System.out.println("\n\n");
     }
-    private static void MergeSort(Node head,)
+
+    
+    private static Node MergeSort(Node head){
+        if(head==null) return null;
+        Node middle=middleForMergeSort();
+        Node lefthalf=head; Node rightHalf=middle.next;
+        middle.next=null;
+
+        Node leftHead=MergeSort(lefthalf);
+        Node rightHead=MergeSort(rightHalf);
+
+        return (merge(leftHead,rightHead));
+    }
+
+    private static Node merge(Node left,Node right){
+        Node dummy=new Node(-1);
+        Node temp=dummy;
+        while(left!=null && right!=null){
+            if(left.data<right.data){
+                temp.next=left;
+                temp=left;
+                left=left.next;
+            }else{
+                temp.next=right;
+                temp=right;
+                right=right.next;
+            }
+        }
+        while(left!=null){
+            temp.next=left;
+            temp=temp.next;
+            left=left.next;
+        }
+        while(right!=null){
+            temp.next=right;
+            temp=temp.next;
+            right=right.next;
+        }
+
+        return dummy.next;
+    }
+
+    private static Node middleForMergeSort(){
+        if(head==null) return null;
+        Node slow=head,fast=head.next;
+        while(fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+        return slow;
+    }
     private static void removeDuplicatesFromUnsortedLL(){
-        int 
-        MergeSort();
+        
+        Node head2=MergeSort(head);
     }
 
 
