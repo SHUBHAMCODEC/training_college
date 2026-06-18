@@ -69,7 +69,11 @@ public class LLloop {
             fast=fast.next.next;
 
             if(slow==fast){
-                
+                slow=head;
+                while(slow!=fast){
+                    slow=slow.next;
+                    fast=fast.next;
+                }
                 while(fast.next!=slow){
                     fast=fast.next;
                 }
@@ -78,6 +82,54 @@ public class LLloop {
                 return;
             }
         }
+    }
+
+    private static void removeDuplicatesFromSortedLL(){
+        Node prev=head; Node temp=head.next;
+
+        while(temp!=null){
+            if(prev.data==temp.data){
+                temp=temp.next;
+            }else if(prev.data!=temp.data){
+                prev.next=temp;
+                prev=prev.next;
+                temp=temp.next;
+            }
+        }
+
+        Node temp2=head;
+        System.out.println("List is after duplicate removels from sorted LL : ");
+        while(temp2!=null){
+            System.out.print(temp2.data+" ");
+            temp2=temp2.next;
+        }
+        System.out.println("\n\n");
+    }
+    private static void MergeSort(Node head,)
+    private static void removeDuplicatesFromUnsortedLL(){
+        int 
+        MergeSort();
+    }
+
+
+    private static void Move_last_element_to_front(){
+        Node prev=null,temp=head;
+
+        while(temp!=null && temp.next!=null){
+            prev=temp;
+            temp=temp.next;
+        }
+
+        temp.next=head;
+        prev.next=null;
+
+        Node temp2=head;
+        System.out.println("List after Move last element to front : ");
+        while(temp2!=null){
+            System.out.print(temp2.data+" ");
+            temp2=temp2.next;
+        }
+        System.out.println("\n\n");
     }
 
     
