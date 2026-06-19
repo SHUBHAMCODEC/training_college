@@ -29,7 +29,7 @@ public class reverseArray {
     }
     
     
-    private static void recur(int cnt,int n,int index,int[] arr){
+    private static void recur(int cnt,int n,int index,int[] arr){ // main function for the code
         if(cnt==n){
             return ;
         }

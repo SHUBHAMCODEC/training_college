@@ -27,7 +27,7 @@ public class Move_NegativeToBeginning {
         System.out.println();
         System.out.println();
     }
-    public static void main(String[] args){
+    public static void main(String[] args){// main function for code
         int arr[]={-12, 11, -13, -5, 6, -7, 5, -3, -6};
         helper(arr);
     }

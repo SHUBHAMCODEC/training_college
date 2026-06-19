@@ -55,7 +55,7 @@ public class StringsAreRotationsOrNot {
         System.out.println("approch 3 yes");
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args){// main fucntion
         helper(new String("rotation"), new String("tionorap"));
     }
 }

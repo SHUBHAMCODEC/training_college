@@ -29,7 +29,7 @@ public class printFirstSubSequenceTargetK {
         return false; // No valid subsequence found in this path
     } 
 
-    public static void main(String[] args) { 
+    public static void main(String[] args) { // main function
         int arr[] = {1, 2, 1}; 
         int k = 2; 
         int n = arr.length;
