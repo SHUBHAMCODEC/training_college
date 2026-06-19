@@ -22,17 +22,17 @@ public class cyclicRotateByKrotation {
 
         System.out.println();
     }
-    public static void main(String[] args) {
-        int arr[]={1,2,3,4,5,6,7,8,9,10};
+    public static void main(String[] args) {// main function
+        int arr[]={1,2,3,4,5,6,7,8,9,10};// array initialisation
          System.out.println("Array Before rotation: ");
-        for(int i:arr){
+        for(int i:arr){// loop
             System.out.print(i+" ");
         }
 
         System.out.println("\n\n");
 
         helperRotation(arr,2);
-        helperRotation(arr, 222);
+        helperRotation(arr, 222);//function call
         helperRotation(arr, 15);
         helperRotation(arr, 35);
         helperRotation(arr, 9);

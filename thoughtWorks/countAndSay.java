@@ -24,9 +24,9 @@ public class countAndSay {
 
        return recur(n-1,sb.toString());
     }
-    public static void main(String[] args) {
-        for (int i = 1; i <= 6; i++) {
-            System.out.println("n = " + i + " -> \"" + recur(i, "1") + "\"");
+    public static void main(String[] args) //{ main
+        for (int i = 1; i <= 6; i++) { // loop
+            System.out.println("n = " + i + " -> \"" + recur(i, "1") + "\""); //function call + printing
         }
     }
 }

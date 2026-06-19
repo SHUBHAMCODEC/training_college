@@ -2,7 +2,7 @@ package thoughtWorks;
 
 public class maxSubarraySum {
 
-    private static void helper(int[] arr){  // kadane's Algorithm
+    private static void helper(int[] arr){  // kadane's Algorithm the optimal algo. for this.
         int sum=0,maxSum=0;
 
         for(int i:arr){

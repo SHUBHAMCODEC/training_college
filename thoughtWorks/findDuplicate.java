@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class findDuplicate {
-    private static void helper(int arr[]) {
+    private static void helper(int arr[]) {//helper function for main
         int n = arr.length;
         
         // Approach 1 -> Brute Force
