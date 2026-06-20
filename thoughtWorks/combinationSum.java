@@ -14,7 +14,7 @@ public class combinationSum {
 
         if(arr[ind]<=target){
             curr.add(arr[ind]);
-            helper(ind+1, arr, target-arr[ind], ls, curr);/// code for picking the element 
+            helper(ind, arr, target-arr[ind], ls, curr);/// code for picking the element 
             curr.remove(curr.size()-1);
         }
         helper(ind+1, arr, target, ls, curr);// code for inpicking the element;
