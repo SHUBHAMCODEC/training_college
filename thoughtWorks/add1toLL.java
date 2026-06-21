@@ -56,7 +56,7 @@ public class add1toLL {
         head=reverse(temp2);
         print(head);
     }
-
+//main function for the code
     private static void print(Node head){
         Node temp2=head;
         System.out.println("list is: ");
