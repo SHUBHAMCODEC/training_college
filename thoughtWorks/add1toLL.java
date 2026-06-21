@@ -14,6 +14,7 @@ public class add1toLL {
     }
 
     static Node head1=null;
+    //function for the ll creation
     private static void creation(int [] arr){
         head1=new Node(arr[0]);
         Node temp=head1;
