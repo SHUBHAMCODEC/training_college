@@ -12,7 +12,7 @@ class Solution {// we have to remove the duplicates from sorted array
         return k;        
     }
 
-    public static void main(String args[]){
+    public static void main(String args[]){// main function for the program
         int[] nums={1,1,2,3,4,5,5,6,10,12,12,15,17,22,22,25,25,36,45,46,48,48,50,50,50};
         int[]arr2=removeDuplicates(nums);
         System.out.println(arr2);
