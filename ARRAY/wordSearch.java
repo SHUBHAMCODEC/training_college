@@ -3,7 +3,7 @@ class Solution {
     private int cols;
     private Set<String> visited;
 
-    public boolean exist(char[][] board, String word) {
+    public boolean exist(char[][] board, String word) { // comment for boolean function
         rows = board.length;
         cols = board[0].length;
         visited = new HashSet<>();
@@ -28,7 +28,7 @@ class Solution {
         return false;
     }
 
-    private boolean dfs(char[][] board, String word, int r, int c, int k) {
+    private boolean dfs(char[][] board, String word, int r, int c, int k) {// helper function for the program
         if (k == word.length()) {
             return true;
         }
