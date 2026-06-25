@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
 public class Solution {
-    public void sortColors(int[] nums) {
+    public void sortColors(int[] nums) {// method to solve the program
         // Initialize counts for 0, 1, and 2
         HashMap<Integer, Integer> count = new HashMap<>();
         count.put(0, 0);
