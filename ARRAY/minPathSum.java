@@ -1,5 +1,5 @@
 class Solution {
-    public int minPathSum(int[][] grid) {
+    public int minPathSum(int[][] grid) {// method to solve the problem
         int m = grid.length;
         int n = grid[0].length;
         
