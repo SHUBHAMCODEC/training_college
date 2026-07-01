@@ -36,7 +36,7 @@ class  add1toList{
 
         return newHead;
     }
-    private static Node add1(Node head){
+    private static Node add1(Node head){// adding function
         Node slow=reverse(head);
 
 
