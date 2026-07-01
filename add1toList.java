@@ -71,9 +71,9 @@ class  add1toList{
 
         System.out.print("NUll");
     }
-    public static void main(String[] args){
+    public static void main(String[] args){//main function of the codee
         Node creaHead=creation(new int[]{1,2,3,4,5,6});
         Node finalHead=add1(creaHead);
-        print(finalHead);
+        print(finalHead);//print function
     }
 }
