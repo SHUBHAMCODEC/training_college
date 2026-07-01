@@ -61,7 +61,7 @@ class  add1toList{
         return reverse(slow);
     }
 
-    private static void print(Node head){
+    private static void print(Node head){//print function
         Node temp=head;
         System.out.println("List:  ");
         while(temp!=null){
