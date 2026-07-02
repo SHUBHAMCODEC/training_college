@@ -64,7 +64,16 @@ public class QUEUSINGsTACK {
             return reverse(slow);
         }
     
-        
+        private static void print(Node head){//print function for the program 
+            Node temp=head;
+            System.out.println("List:  ");
+            while(temp!=null){
+                System.out.print(temp.data+" ");
+                temp=temp.next;
+            }
+    
+            System.out.print("NUll");
+        }
         public static void main(String[] args){//main function of the codee
             Node creaHead=creation(new int[]{1,2,3,4,5,6});
             Node finalHead=add1(creaHead);
