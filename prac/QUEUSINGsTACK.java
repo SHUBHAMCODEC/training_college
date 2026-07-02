@@ -3,7 +3,7 @@ package prac;
 public class QUEUSINGsTACK {
   
 
-        static class Node{
+        static class Node{// linledList Structure
             Node next;
             int data;
     
@@ -27,7 +27,7 @@ public class QUEUSINGsTACK {
     
             return mainHead;
         }
-        private static Node reverse(Node head){
+        private static Node reverse(Node head){// LikedList reverse function
             if(head==null || head.next==null){
                 return head;
             }
