@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class arrayBasic {
    
-    public int calculateMinimumHP(int[][] dungeon) {
+    public int calculateMinimumHP(int[][] dungeon) {// function for calculate the minimumHP
         int m = dungeon.length, n = dungeon[0].length;
         int[] dp = new int[n + 1];
         Arrays.fill(dp, Integer.MAX_VALUE);
