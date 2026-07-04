@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class spiralOrder2 {
-    public List<Integer> spiralOrder2(int[][] matrix) {
+    public static List<Integer> spiralOrder2(int[][] matrix) {// main function
         int rows = matrix.length;
         int cols = matrix[0].length;
         int x = 0;
@@ -26,5 +26,18 @@ public class spiralOrder2 {
         }
 
         return res;        
+    }
+
+    public static void main(String[] args) {
+        int[][] testMatrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        List<Integer> result = spiralOrder(testMatrix);
+        
+        // Output will be: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+        System.out.println(result);
     }
 }
