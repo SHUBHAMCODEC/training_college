@@ -20,7 +20,7 @@ public class reverseArray {
     }
 
 
-    private static void max_min_element(int arr[]){
+    private static void max_min_element(int arr[]){// helper function for the program
         int min=Integer.MAX_VALUE;
         int max=Integer.MIN_VALUE;
         int actualMin=Integer.MAX_VALUE;
