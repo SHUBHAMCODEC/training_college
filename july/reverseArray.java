@@ -1,6 +1,6 @@
 package july;
 
-public class reverseArray {
+public class reverseArray {//heler function for reverse array
     private static void helper(int [] arr){
         int low=0,high=arr.length-1;
         System.out.println("array before reverse is: ");
