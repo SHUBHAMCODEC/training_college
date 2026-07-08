@@ -47,7 +47,7 @@ public class reverseArray {//heler function for reverse array
         System.out.println(" actualMIn element is : "+ actualMin);
         
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) {// tester function
         helper(new int[]{1,2,3,4,50,60,70,80,90,100});
         max_min_element(new arr[]{1,2,3,4,50,60,70,80,90,100});
     }
