@@ -13,7 +13,7 @@ public class reverseArray {//heler function for reverse array
             arr[high]=temp;
         }
 
-        System.out.println("array After reverse is: ");
+        System.out.println("array After reverse is: "); //syste functiom
         for(int i:arr){
             System.out.print(i+" ");
         }
