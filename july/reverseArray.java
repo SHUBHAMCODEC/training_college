@@ -13,14 +13,14 @@ public class reverseArray {//heler function for reverse array
             arr[high]=temp;
         }
 
-        System.out.println("array After reverse is: "); //syste functiom
+        System.out.println("array After reverse is: "); 
         for(int i:arr){
             System.out.print(i+" ");
         }
     }
 
 
-    private static void max_min_element(int arr[]){// helper function for the program
+    private static void max_min_element(int arr[]){
         int min=Integer.MAX_VALUE;
         int max=Integer.MIN_VALUE;
         int actualMin=Integer.MAX_VALUE;
@@ -47,7 +47,7 @@ public class reverseArray {//heler function for reverse array
         System.out.println(" actualMIn element is : "+ actualMin);
         
     }
-    public static void main(String[] args) {// tester function
+    public static void main(String[] args) {
         helper(new int[]{1,2,3,4,50,60,70,80,90,100});
         max_min_element(new arr[]{1,2,3,4,50,60,70,80,90,100});
     }
