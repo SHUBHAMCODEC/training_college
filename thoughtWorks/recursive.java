@@ -21,7 +21,24 @@ public class recursive {
     }
 
 
-   
+    private static void helperByrecursion(int index,int arr[],List<List<Integer>> main,List<Integer> sub){
+        if(index==arr.length){
+            main.add(new ArrayList<>(sub));
+            return;
+        }
+
+        //pick and not Pick
+
+
+        //pick
+        sub.add(arr[index]);
+        helperByrecursion(index+1, arr, main, sub);
+
+        //not pick
+        sub.remove(sub.size()-1);
+
+        helperByrecursion(index+1, arr, main, sub);
+    }
     public static void main(String[] args) {
 
         int[] input = {1, 2, 3};
