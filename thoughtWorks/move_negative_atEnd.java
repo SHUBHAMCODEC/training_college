@@ -91,10 +91,7 @@ public class move_negative_atEnd {
         reverse(arr,j,mid);
         reverse(arr,i,j-1);
 
-        System.out.println(" merge sort function result :-");
-        for(int p:arr){
-            System.out.print(p+" ");
-        }
+        
     }
 
     private static void reverse(int arr[],int low,int high){
@@ -107,20 +104,23 @@ public class move_negative_atEnd {
     }
 
     public static void main(String[] args){
-        helperFunction(new int[]{4,5,-8,-4,-2,-1,5,6,8,-2,4,-6,-89,-12,-56,100,101,147});
-
+        System.out.println("----------------------------------------1st function-----------------------");
+        helperFunction(new int[]{4, 5, -8, -4, -2, -1, 5, 6, 8, -2, 4, -6, -89, -12, -56, 100, 101, 147});
         System.out.println("\n\n");
 
         System.out.println("----------------------------------------2nd function-----------------------");
-        System.out.println();
-        inPlace(new int[]{-2,-1,5,6,8,-2,4,-6,-89,-12});
+        inPlace(new int[]{-2, -1, 5, 6, 8, -2, 4, -6, -89, -12});
+        System.out.println("\n\n");
 
-        System.out.println(); System.out.println();
-
-        System.out.println("---------------------------------------------------3rd function--------------------");
-        int arre[]={-45,-78,-89,-55,1,2,3,46,45,-99,-101,-144,250};
-        mergeSort(arre, 0, arre.length-1);
+        System.out.println("----------------------------------------3rd function-----------------------");
+        int arre[] = {-45, -78, -89, -55, 1, 2, 3, 46, 45, -99, -101, -144, 250};
+        mergeSort(arre, 0, arre.length - 1);
         
+        System.out.println("Array after execution of mergeSort Function");
+        for (int p : arre) {
+            System.out.print(p + " ");
+        }
+        System.out.println();
     }
     
 }
