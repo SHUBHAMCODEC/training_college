@@ -11,6 +11,7 @@ public class move_negative_atEnd {
         for(int i:arr){
             System.out.print(i+ " ");
         }
+        System.out.println();
         int index=arr.length-1;
         int i=0;
         while(i<index){
@@ -56,7 +57,7 @@ public class move_negative_atEnd {
 
         // Copy temp back to original array
         System.arraycopy(temp, 0, arr, 0, arr.length);
-        System.out.println("Array after execution of helperFunction");
+        System.out.println("Array after execution of inPlace Function");
         for(int j:arr){
             System.out.print(j+ " ");
         }
@@ -76,19 +77,24 @@ public class move_negative_atEnd {
 
     private static void merge(int arr[],int l,int mid,int h){
         int i=0;
-        int j=h-1;
+        int j=mid+1;
 
         while(i<=mid && arr[i]>0){
             i++;
         }
 
-        while(j>=mid && arr[j]>0){
-            j--;
+        while(j<=h && arr[j]>0){
+            j++;
         }
 
         reverse(arr,i,mid);
         reverse(arr,j,mid);
         reverse(arr,i,j-1);
+
+        System.out.println(" merge sort function result :-");
+        for(int p:arr){
+            System.out.print(p+" ");
+        }
     }
 
     private static void reverse(int arr[],int low,int high){
@@ -96,18 +102,25 @@ public class move_negative_atEnd {
             int temp=arr[low];
             arr[low]=arr[high];
             arr[high]=temp;
+            low++;high--;
         }
     }
 
     public static void main(String[] args){
         helperFunction(new int[]{4,5,-8,-4,-2,-1,5,6,8,-2,4,-6,-89,-12,-56,100,101,147});
 
+        System.out.println("\n\n");
+
         System.out.println("----------------------------------------2nd function-----------------------");
+        System.out.println();
         inPlace(new int[]{-2,-1,5,6,8,-2,4,-6,-89,-12});
+
+        System.out.println(); System.out.println();
 
         System.out.println("---------------------------------------------------3rd function--------------------");
         int arre[]={-45,-78,-89,-55,1,2,3,46,45,-99,-101,-144,250};
         mergeSort(arre, 0, arre.length-1);
+        
     }
     
 }
