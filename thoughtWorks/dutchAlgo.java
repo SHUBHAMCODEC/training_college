@@ -8,11 +8,11 @@ public class dutchAlgo {
         for(int i:arr){
             System.out.print(i+" ");
         }
-        while(mid<arr.length){
+        while(mid<=high){
             if(arr[mid]==0){
                 int temp=arr[low];
-                arr[low]=arr[high];
-                arr[high]=temp;
+                arr[low]=arr[mid];
+                arr[mid]=temp;
                 
                 low++;
                 mid++;
@@ -23,8 +23,9 @@ public class dutchAlgo {
                 int temp=arr[mid];
                 arr[mid]=arr[high];
                 arr[high]=temp;
+                // Fix: Decrement high, do NOT increment mid yet
+                high--;
                 
-                mid++;
             }
         }
 
