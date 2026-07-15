@@ -44,7 +44,7 @@ public class recursive {
         int[] input = {1, 2, 3};
 
         // 1. Testing Bit Manipulation Approach
-        List<List<Integer>> subsets = helperBit(input);
+        List<List<Integer>> subsets = helperBit(input);// first function in which of we can get sub sets for the bit manipulaion
         
         System.out.println("All generated subsets via Bit Manipulation:");
         for (List<Integer> subset : subsets) {
