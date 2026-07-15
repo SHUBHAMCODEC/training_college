@@ -53,7 +53,7 @@ public class recursive {
 
         System.out.println("\n--------------------------------------------------\n");
         
-        // 2. Testing Recursive Approach
+    // testing 2nd approch for 2nd function
         List<List<Integer>> subsetsRecursive = new ArrayList<>();
         helperByrecursion(0, input, subsetsRecursive, new ArrayList<>());
         
