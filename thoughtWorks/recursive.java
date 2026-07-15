@@ -39,7 +39,7 @@ public class recursive {
 
         helperByrecursion(index+1, arr, main, sub);
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) {// added function for the growth of the system
 
         int[] input = {1, 2, 3};
 
