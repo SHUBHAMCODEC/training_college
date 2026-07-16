@@ -19,7 +19,7 @@ public class maxSubarraySum {
 
         System.out.println("Maximum SUbarray Sum is : "+maxSum);
     }
-    public static void main(String[] args){
+    public static void main(String[] args){ //main function for setting the program working completely
         int arr[]={-5432, -5432, -999, -12, -12, -1, 0, 0, 1, 12, 12, 999, 999, 5432};
 
         helper(arr);
