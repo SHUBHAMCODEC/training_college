@@ -39,8 +39,24 @@ public class Tree { // Class names should start with an uppercase letter
         return root;
     }
 
+    // Inorder traversal of tree
+    private static void printTree(Node root) {
+        // Base Case: If the current node is null, do nothing and return
+        if (root == null) {
+            return;
+        }
 
-    
+        // 1. Traverse the left subtree
+        printTree(root.leftChild);
+
+        // 2. Print the data of the current node
+        System.out.print(root.data + " ");
+
+        // 3. Traverse the right subtree
+        printTree(root.rightChild);
+    }
+
+
     public static void main(String[] args){
         addChilds(75);
 
@@ -56,5 +72,10 @@ public class Tree { // Class names should start with an uppercase letter
         addChilds(69);
         addChilds(751);
         
+
+        // Print the tree structure to verify
+        System.out.print("In-order Traversal: ");
+        printTree(root);
+        System.out.println();
     }
 }
