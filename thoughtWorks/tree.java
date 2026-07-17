@@ -13,35 +13,48 @@ public class Tree { // Class names should start with an uppercase letter
         }
     }
 
-    // Fixed: 'static' must be lowercase
+  
     static Node root = null; 
-
-    // Insert method using a helper loop or recursion
+    // Public API method called by the main method
     private static void addChilds(int data) {
-        Node newNode = new Node(data);
+        // Kick off the recursion and assign the result back to root
+        root = creteOtherNodesRecur(root, data);
+    }
+
+    // Recursive helper method that builds and returns the tree structure
+    private static Node creteOtherNodesRecur(Node root, int data) {
+        // Base Case: Found an empty spot, create the new node
         if (root == null) {
-            root = newNode;
-            return;
+            return new Node(data);
         }
 
-        Node current = root;
-        Node parent = null;
-
-        while (true) {
-            parent = current;
-            if (data < current.data) { // Go left
-                current = current.leftChild;
-                if (current == null) {
-                    parent.leftChild = newNode;
-                    return;
-                }
-            } else { // Go right
-                current = current.rightChild;
-                if (current == null) {
-                    parent.rightChild = newNode;
-                    return;
-                }
-            }
+        // Recursive Case: Decide to go left or right based on the data value
+        if (data < root.data) {
+            root.leftChild = creteOtherNodesRecur(root.leftChild, data);
+        } else {
+            root.rightChild = creteOtherNodesRecur(root.rightChild, data);
         }
+
+        // Return the current node up the call stack to maintain links
+        return root;
+    }
+
+
+    
+    public static void main(String[] args){
+        addChilds(75);
+
+
+        addChilds(12);
+        addChilds(42);
+        addChilds(112);
+        addChilds(122);
+        addChilds(56);
+        addChilds(79);
+        addChilds(14);
+        addChilds(49);
+        addChilds(69);
+        addChilds(751);
+        
     }
 }
