@@ -57,7 +57,7 @@ public class Tree { // Class names should start with an uppercase letter
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args){// main function for running the program 
         addChilds(75);
 
 
