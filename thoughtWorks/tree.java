@@ -123,6 +123,27 @@ private static int minValue(Node root) {
     }
     return minv;
 }
+
+
+// 4. Calculate Tree Height (Maximum Depth)
+public static int getHeight(Node root) {
+    if (root == null) return -1; // Use 0 if a single node has a height of 1
+    return 1 + Math.max(getHeight(root.leftChild), getHeight(root.rightChild));
+}
+
+// 5. Count Total Nodes in the Tree
+public static int countNodes(Node root) {
+    if (root == null) return 0;
+    return 1 + countNodes(root.leftChild) + countNodes(root.rightChild);
+}
+
+// 6. Count Only Leaf Nodes (Nodes with no children)
+public static int countLeaves(Node root) {
+    if (root == null) return 0;
+    if (root.leftChild == null && root.rightChild == null) return 1;
+    return countLeaves(root.leftChild) + countLeaves(root.rightChild);
+}
+
     public static void main(String[] args){// main function for running the program 
         addChilds(75);
 
