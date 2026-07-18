@@ -56,7 +56,49 @@ public class Tree { // Class names should start with an uppercase letter
         printTree(root.rightChild);
     }
 
+   private static Node deleteNode(Node root, int target) {
+    // Base Case: The tree or subtree is empty
+    if (root == null) {
+        return null;
+    }
 
+    // Step 1: Navigate to the target node
+    if (target < root.data) {
+        root.left = deleteNode(root.left, target);
+    } else if (target > root.data) {
+        root.right = deleteNode(root.right, target);
+    } 
+    // Step 2: Target node found, handle the deletion
+    else {
+        // Case 1: No children (Leaf node)
+        // Case 2: Only one child (Right child missing)
+        if (root.left == null) {
+            return root.right;
+        } 
+        // Case 2: Only one child (Left child missing)
+        else if (root.right == null) {
+            return root.left;
+        }
+
+        // Case 3: Two children
+        // Get the inorder successor (smallest value in the right subtree)
+        root.data = minValue(root.right);
+
+        // Delete the inorder successor
+        root.right = deleteNode(root.right, root.data);
+    }
+
+    return root;
+}
+
+private static int minValue(Node root) {
+    int minv = root.data;
+    while (root.left != null) {
+        minv = root.left.data;
+        root = root.left;
+    }
+    return minv;
+}
     public static void main(String[] args){// main function for running the program 
         addChilds(75);
 
