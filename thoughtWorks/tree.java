@@ -91,6 +91,30 @@ public class Tree { // Class names should start with an uppercase letter
     return root;
 }
 
+
+// 1. Pre-Order Traversal (Root -> Left -> Right)
+public static void preOrder(Node root) {
+    if (root == null) return;
+    System.out.print(root.data + " ");
+    preOrder(root.leftChild);
+    preOrder(root.rightChild);
+}
+// 2. In-Order Traversal (Left -> Root -> Right)
+public static void inOrder(Node root) {
+    if (root == null) return;
+    inOrder(root.leftChild);
+    System.out.print(root.data + " ");
+    inOrder(root.rightChild);
+}
+
+// 3. Post-Order Traversal (Left -> Right -> Root)
+public static void postOrder(Node root) {
+    if (root == null) return;
+    postOrder(root.leftChild);
+    postOrder(root.rightChild);
+    System.out.print(root.data + " ");
+}
+
 private static int minValue(Node root) {
     int minv = root.data;
     while (root.left != null) {
