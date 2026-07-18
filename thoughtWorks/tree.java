@@ -143,7 +143,24 @@ public static int countLeaves(Node root) {
     if (root.leftChild == null && root.rightChild == null) return 1;
     return countLeaves(root.leftChild) + countLeaves(root.rightChild);
 }
+// 7. Find Maximum Value in a General Binary Tree
+public static int findMax(Node root) {
+    if (root == null) return Integer.MIN_VALUE;
+    
+    int max = root.data;
+    int leftMax = findMax(root.leftChild);
+    int rightMax = findMax(root.rightChild);
+    
+    return Math.max(max, Math.max(leftMax, rightMax));
+}
 
+// 8. Check if a Value Exists in the Tree
+public static boolean contains(Node root, int target) {
+    if (root == null) return false;
+    if (root.data == target) return true;
+    
+    return contains(root.leftChild, target) || contains(root.rightChild, target);
+}
     public static void main(String[] args){// main function for running the program 
         addChilds(75);
 
