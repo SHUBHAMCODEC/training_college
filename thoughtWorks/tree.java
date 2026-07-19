@@ -161,6 +161,10 @@ public static boolean contains(Node root, int target) {
     
     return contains(root.leftChild, target) || contains(root.rightChild, target);
 }
+
+private static void symmetricTree(Node t1,Node t2){//function to identify wheather a tree is symmetric to another tree .
+
+}
     public static void main(String[] args){// main function for running the program 
         addChilds(75);
 
