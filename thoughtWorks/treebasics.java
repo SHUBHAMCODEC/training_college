@@ -14,6 +14,7 @@ public class treebasics {
     }
 
     static Node root=null;
+
     private static Node creation(Node root,int data){// function to create nodes of tree
         if(root==null){
             return new Node(data);
@@ -26,7 +27,7 @@ public class treebasics {
         return root;
     }
 
-    private static Node delete(Node root,int target){
+    private static Node delete(Node root,int target){// function to delete the specific node of tree -> recursive approch
 
         if(root.data==target){
             return root=null;
@@ -40,13 +41,32 @@ public class treebasics {
         return root;
     }
 
-    private static void print(Node root){
+    private static void print(Node root){ //function for printing the nOdes of tree -> preOrder traversal printing.
         if(root==null){
             return;
         }
         System.out.print(root.data);
         print(root.left);
         print(root.right);
+    }
+
+    private static void printInorder(Node root){//inOrder traversal print
+        if(root==null){
+            return;
+        }
+        printInorder(root.left);
+        System.out.print(root.data);
+        printInorder(root.right);
+    }
+
+    private static void printPostorder(Node root){//postorder traversal print
+        if(root==null){
+            return;
+        }
+
+        printPostorder(root.left);
+        printPostorder(root.right);
+        System.out.print(root.data);
     }
     public static void main(String[] args) {
         root=creation(95);
