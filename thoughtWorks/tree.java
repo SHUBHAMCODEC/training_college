@@ -198,6 +198,8 @@ public static boolean symmetricTree(Node t1, Node t2) {
         printTree(root);
         System.out.println();
 
+        // Example check: A single tree compared against itself is symmetric 
+        // only if its left and right subtrees mirror each other.
         boolean isSymmetric = symmetricTree(root, root);
         System.out.println("Is the tree symmetric to itself? " + isSymmetric);
     }
