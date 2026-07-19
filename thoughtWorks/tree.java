@@ -162,19 +162,20 @@ public static boolean contains(Node root, int target) {
     return contains(root.leftChild, target) || contains(root.rightChild, target);
 }
 
-private static boolean symmetricTree(Node t1,Node t2){//function to identify wheather a tree is symmetric to another tree .
-    return isMirror(root.left, root.right);
-}
-private boolean isMirror(Node n1, Node n2) {
+private static boolean isMirror(Node n1, Node n2) {
     if (n1 == null && n2 == null) {
         return true;
     }
-    
     if (n1 == null || n2 == null) {
         return false;
     }
-    
-    return n1.data == n2.data && isMirror(n1.data, n2.data) && isMirror(n1.right, n2.left);
+    // Match left child with right child, and right child with left child
+    return (n1.data == n2.data) && isMirror(n1.leftChild, n2.rightChild)  && isMirror(n1.rightChild, n2.leftChild);
+}
+
+// 2. FIXED: Changed to static to match the main method context
+public static boolean symmetricTree(Node t1, Node t2) {
+    return isMirror(t1, t2); 
 }
     public static void main(String[] args){// main function for running the program 
         addChilds(75);
@@ -196,5 +197,8 @@ private boolean isMirror(Node n1, Node n2) {
         System.out.print("In-order Traversal: ");
         printTree(root);
         System.out.println();
+
+        boolean isSymmetric = symmetricTree(root, root);
+        System.out.println("Is the tree symmetric to itself? " + isSymmetric);
     }
 }
