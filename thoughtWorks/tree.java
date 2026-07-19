@@ -162,8 +162,19 @@ public static boolean contains(Node root, int target) {
     return contains(root.leftChild, target) || contains(root.rightChild, target);
 }
 
-private static void symmetricTree(Node t1,Node t2){//function to identify wheather a tree is symmetric to another tree .
-
+private static boolean symmetricTree(Node t1,Node t2){//function to identify wheather a tree is symmetric to another tree .
+    return isMirror(root.left, root.right);
+}
+private boolean isMirror(Node n1, Node n2) {
+    if (n1 == null && n2 == null) {
+        return true;
+    }
+    
+    if (n1 == null || n2 == null) {
+        return false;
+    }
+    
+    return n1.data == n2.data && isMirror(n1.data, n2.data) && isMirror(n1.right, n2.left);
 }
     public static void main(String[] args){// main function for running the program 
         addChilds(75);
