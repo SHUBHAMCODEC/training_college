@@ -2,7 +2,7 @@ package thoughtWorks;
 
 public class treebasics {
     
-    static class Node{
+    static class Node{// tree structure for tree 
         Node left;
         int data;
         Node right;
@@ -14,7 +14,7 @@ public class treebasics {
     }
 
     static Node root=null;
-    private static Node creation(Node root,int data){
+    private static Node creation(Node root,int data){// function to create nodes of tree
         if(root==null){
             return new Node(data);
         }
