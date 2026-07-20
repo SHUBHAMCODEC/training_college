@@ -51,8 +51,12 @@ public class uniqueBST {
         // Test cases
         int test1 = 3;
         int test2 = 4;
+        int test3=9;
+        int test4=18;
         
         System.out.println("Unique BSTs for " + test1 + " nodes: " + solver.numTrees(test1)); // Output: 5
         System.out.println("Unique BSTs for " + test2 + " nodes: " + solver.numTrees(test2)); // Output: 14
+        System.out.println("Unique BSTs for " + test3 + " nodes: " + solver.numTrees(test3)); // Output: 4862
+        System.out.println("Unique BSTs for " + test4 + " nodes: " + solver.numTrees(test4)); // Output: 477638700
     }
 }
