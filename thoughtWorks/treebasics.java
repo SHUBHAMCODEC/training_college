@@ -20,32 +20,51 @@ public class treebasics {
             return new Node(data);
         }
         if(data<root.data){
-            creation(root.left,data);
+            root.left=creation(root.left,data);
         }else{
-            creation(root.right, data);
+            root.right=creation(root.right, data);
         }
         return root;
     }
 
     private static Node delete(Node root,int target){// function to delete the specific node of tree -> recursive approch
-
-        if(root.data==target){
-            return root=null;
+        if(root==null){
+            return null;
         }
 
         if(target<root.data){
-            delete(root.left, target);
+            root.left=delete(root.left, target);
+        }else if(target>root.data){
+            root.right=delete(root.right, target);
         }else{
-            delete(root.right, target);
+
+            if(root.left==null) return root.right;
+            if(root.right==null)return root.left;
+
+            //if deleting node has 2 children.
+
+            root.data=minv(root.right);
+
+            root.right=delete(root.right, root.data);
         }
+
         return root;
+    }
+
+    private static int minv(Node root){
+        int min_value=root.data;
+        while(root.left!=null){
+            min_value=root.left.data;
+            root=root.left;
+        }
+        return min_value;
     }
 
     private static void print(Node root){ //function for printing the nOdes of tree -> preOrder traversal printing.
         if(root==null){
             return;
         }
-        System.out.print(root.data);
+        System.out.print(root.data+" ");
         print(root.left);
         print(root.right);
     }
@@ -55,7 +74,7 @@ public class treebasics {
             return;
         }
         printInorder(root.left);
-        System.out.print(root.data);
+        System.out.print(root.data+" ");
         printInorder(root.right);
     }
 
@@ -66,7 +85,7 @@ public class treebasics {
 
         printPostorder(root.left);
         printPostorder(root.right);
-        System.out.print(root.data);
+        System.out.print(root.data+" ");
     }
     public static void main(String[] args) {
         root=creation(95);
