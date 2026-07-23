@@ -1,9 +1,9 @@
 package thoughtWorks;
 import java.util.*;
+
 public class stack {
 
    
-    
     public static void main(String args[]){
 
         // Testing Queue-based Stack
@@ -36,10 +36,8 @@ class stackUsingQueue{
     Queue<Integer> q2=new LinkedList<>();
     
 
-    private  void push(int data){
-        if(q1.isEmpty()){
-            q1.add(data);
-        }
+    public  void push(int data){
+       
 
         while(!q1.isEmpty()){
 
@@ -54,7 +52,7 @@ class stackUsingQueue{
         }
     }
 
-    private  void pop(){
+    public  void pop(){
         if(q1.isEmpty()){
             System.out.println("Stack is underflow... ");
             return;
@@ -63,7 +61,7 @@ class stackUsingQueue{
         System.out.println("deleted element is : "+ q1.poll());
     }
 
-    private  void display(){
+    public  void display(){
         if (q1.isEmpty()) {
             System.out.println("Stack is empty");
             return;
@@ -100,7 +98,7 @@ class stackUsingArray{
         stArray[ptr] = 0; // Clean up reference
     }
 
-    private  void display(){
+    public  void display(){
         if (ptr == 0) {
             System.out.println("Stack is empty");
             return;
