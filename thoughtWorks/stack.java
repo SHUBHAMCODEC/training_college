@@ -3,6 +3,24 @@ import java.util.*;
 
 public class stack {
 
+    private static void valitparenthesis(String s){
+        Stack<Character> st=new Stack<>();
+
+        for(char c:s.toCharArray()){
+            if(c=='(' ||c=='{' ||c=='['){
+                st.push(c);
+            }
+            if(c==')' && st.peek()=='(' || c==']' && st.peek()=='[' || c=='}' && st.peek()=='{'){
+                st.pop();
+            }
+        }
+
+        if( !st.isEmpty()){
+            System.out.println("Not a valid parenthesis");
+            return;
+        }
+        System.out.println("a valid parenthesis");
+    }
    
     public static void main(String args[]){
 
