@@ -5,17 +5,32 @@ public class stack {
 
     private static void valitparenthesis(String s){
         Stack<Character> st=new Stack<>();
-
-        for(char c:s.toCharArray()){
-            if(c=='(' ||c=='{' ||c=='['){
+        for (char c : s.toCharArray()) {
+            if (c == '(' || c == '{' || c == '[') {
                 st.push(c);
-            }
-            if(c==')' && st.peek()=='(' || c==']' && st.peek()=='[' || c=='}' && st.peek()=='{'){
-                st.pop();
+            } 
+            // Use 'else if' so opening brackets don't evaluate closing logic
+            else if (c == ')' || c == ']' || c == '}') {
+                // FIX 1: If stack is empty, there is no opening bracket to match
+                if (st.isEmpty()) {
+                    System.out.println("Not a valid parenthesis");
+                    return;
+                }
+                
+                char top = st.peek();
+                if ((c == ')' && top == '(') || 
+                    (c == ']' && top == '[') || 
+                    (c == '}' && top == '{')) {
+                    st.pop();
+                } else {
+                    // FIX 2: Mismatched brackets fail immediately to save time
+                    System.out.println("Not a valid parenthesis");
+                    return;
+                }
             }
         }
-
-        if( !st.isEmpty()){
+        
+        if (!st.isEmpty()) {
             System.out.println("Not a valid parenthesis");
             return;
         }
