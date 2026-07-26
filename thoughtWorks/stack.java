@@ -29,35 +29,66 @@ public class stack {
                 }
             }
         }
-
-        private static void infixTopreFix(String s){
-
-            Stack<Character> st0=new Stack<>();
-            s=s.toLowerCase();
-            char[] cr=s.toCharArray();
-            for(int i=0;i<cr.length;i++){
-                if(cr[i]>='a' && cr[i]<='z'){
-                    st0.push(cr[i]);
-                }else{
-                    if(i<cr.length){
-                        char ctemp=st0.peek();
-                        char nextOfith=cr[i+1];
-                        char c=(ctemp+nextOfith+cr[i])
-                        st.push(c);
-                    }
-
-                }
-            }
-
-            System.out.println("postFix Notation of given prefix: "+s+" is : "+ st.peek());
-
-        }
         
         if (!st.isEmpty()) {
             System.out.println("Not a valid parenthesis");
             return;
         }
         System.out.println("a valid parenthesis");
+    }
+
+    private static int getPrecedence(char c){
+        switch(c){
+            case '+':
+            case '-':
+                return 1;
+            case '*':
+            case '/':
+                return 2;
+            case '^':
+                return 3;
+
+        }
+        return -1;
+    }
+    private static void infixToPostfix(String s){
+
+        StringBuilder sb=new StringBuilder();
+        Stack<Character> st=new Stack<>();
+
+        s=s.toLowerCase();
+        for(int i=0;i<s.length();i++){
+            char c=s.charAt(i);
+
+            if(c>='a' && c<='z'){
+                sb.append(c);
+            }
+            else if(c=='('){
+                st.push(c);
+            }
+            else if(c==')'){
+                while(!st.isEmpty() && st.peek()!='('){
+                    sb.append(st.pop());
+                }
+                if(!st.isEmpty() && st.peek()=='('){
+                    st.pop();
+                }
+            }
+            else if(c=='+' || c=='-' || c=='*' || c=='/' || c == '^'){
+                while(!st.isEmpty() && getPrecedence(c)<=getPrecedence(st.peek())){
+                    sb.append(st.pop());
+                }
+
+                st.push(c);
+            }
+
+        }
+
+        while(!st.isEmpty()){
+            sb.append(st.pop());
+        }
+
+        System.out.println("Infix: " + s + " -> Postfix: " + sb.toString());
     }
    
     public static void main(String args[]){
@@ -80,6 +111,13 @@ public class stack {
         s2.display(); // Output: 100 200 
         s2.pop();     // Output: Deleted element is : 200
         s2.display(); // Output: 100 
+
+        System.out.println("\n--- Infix to Postfix Testing ---");
+        infixToPostfix("a+b");                  // Expected: ab+
+        infixToPostfix("(a+b)*c");              // Expected: ab+c*
+        infixToPostfix("a+b*c/d-e");            // Expected: abc*d/+e-
+        infixToPostfix("((a+b)*(c-d))/(e+f)");  // Expected: ab+cd-*ef+/
+        infixToPostfix("a^b^c");                // Expected: abc^^
     }
 }
 
