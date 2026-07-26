@@ -29,6 +29,29 @@ public class stack {
                 }
             }
         }
+
+        private static void infixTopreFix(String s){
+
+            Stack<Character> st0=new Stack<>();
+            s=s.toLowerCase();
+            char[] cr=s.toCharArray();
+            for(int i=0;i<cr.length;i++){
+                if(cr[i]>='a' && cr[i]<='z'){
+                    st0.push(cr[i]);
+                }else{
+                    if(i<cr.length){
+                        char ctemp=st0.peek();
+                        char nextOfith=cr[i+1];
+                        char c=(ctemp+nextOfith+cr[i])
+                        st.push(c);
+                    }
+
+                }
+            }
+
+            System.out.println("postFix Notation of given prefix: "+s+" is : "+ st.peek());
+
+        }
         
         if (!st.isEmpty()) {
             System.out.println("Not a valid parenthesis");
