@@ -1,5 +1,4 @@
 package thoughtWorks;
-// Arrays - Fundamentals & Problem Patterns
 import java.util.*;
 public class Monday {
 
@@ -165,7 +164,78 @@ public class Monday {
         return false;
     }
 
-    
+    private static int Running_Sum_of_Array(int arr[]){
+        int sum=0;
+        for(int i:arr){
+            sum+=i;
+        }
+
+        return sum;
+    }
+
+    private static int Find_sum_Of_Range(int l, int r,int arr[]){
+        int sum=0;
+        if(l<arr.length-1 || r<arr.length-1){
+            return sum;
+        }
+        for(int i=l;i<r;i++){
+            sum+=arr[i];
+        }
+
+        return sum;
+    }
+    private static int Maximum_Subarray_Sum(int arr[]){// kadane's algorithm
+        int sum=0, max=0;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+            if(sum<0){
+                sum=0;
+            }
+            max=Math.max(sum,max);
+        }
+
+        return max;
+    }
+
+    private static void Best_Time_to_Buy_and_Sell_Stock(int []arr){
+        int profit=0;
+        int buyDay=arr[0], sellDay=0;
+        int buyKaDin=0; int BhechanKaDin=0;
+        for(int i=1;i<arr.length;i++){
+            if(arr[i]<buyDay){
+                buyDay=arr[i];
+                buyKaDin=i;
+            }
+            int max=arr[i]-buyDay;
+            if(max>profit){
+                profit=max;
+                BhechanKaDin=i;
+            }
+        }
+
+        System.out.println("profit achieved on stocks is : "+ profit + " for that  buy's day: "+buyKaDin +" ---------  and sell's day : "+ BhechanKaDin );
+    }
+
+    private static int[] Product_of_Array_Except_Self(int arr[]){
+        
+        int prefixRange=0;
+        for(int i=0;i<arr.length;i++){
+            int prefixProduct=1, suffixProduct=1;
+            while(prefixRange<i){
+                prefixProduct*=arr[prefixRange];
+                prefixRange++;
+            }
+            int suffixrange=i+1;
+            while(suffixrange<arr.length-1){
+                suffixProduct*=arr[suffixrange];
+                suffixrange++;
+            }
+
+            arr[i]=prefixProduct*suffixProduct;
+        }
+
+        return arr;
+    }
     public static void main(String[] args) {
         
     }
