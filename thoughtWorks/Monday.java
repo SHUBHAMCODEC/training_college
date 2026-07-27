@@ -236,6 +236,68 @@ public class Monday {
 
         return arr;
     }
+
+    private static int Maximum_Sum_of_K_Consecutive_Elements(int [] arr,int k){// sliding window
+        int low=0;
+        int max=0;
+        while(low<(arr.length-k)){
+            int sum=arr[low];
+            for(int high=low+1;high<low+k;high++){
+                sum+=arr[high];
+            }
+            max=Math.max(max,sum);
+
+            low+=1;
+        } 
+        
+        return max;
+    }
+
+    private static void Longest_Subarray_with_Sum(int[] arr,int s){
+        int low=0;int max=0;
+        while(low<arr.length){
+            for(int high=low+1;high<arr.length;high++){
+                int sum=arr[low];
+
+                if(sum<s){
+                    sum+=arr[high];
+                    max=Math.max(max, high-low+1);
+                }else{
+                    low+=1;  // moving the sliding window by one
+                }
+            }
+        }
+    }
+
+    private static int Longest_Substring_Without_Repeating_Characters(String s){
+        HashSet<Character> set=new HashSet<>();
+        int low=0;int max=0;
+        for(int high=0;high<s.length()-1;high++){
+            char c=s.charAt(high);
+            while(set.contains(c)){
+                set.remove(s.charAt(low++));
+            }
+
+            max=Math.max(max,high-low+1);
+            set.add(c);
+        }
+
+        return max;
+    }
+
+    private static void Majority_Element(int arr[]){
+        int n=arr.length/2;
+        HashMap<Integer,Integer> mpp=new HashMap<>();
+        for(int i:arr){
+            mpp.put(i, mpp.getOrDefault(i,0)+1);
+        }
+
+        for(Map.Entry<Integer,Integer> i:mpp.entrySet()){
+            if(i.getValue()==n){
+                System.out.println(i.getKey());
+            }
+        }
+    }
     public static void main(String[] args) {
         
     }
