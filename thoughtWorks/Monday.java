@@ -34,7 +34,7 @@ public class Monday {
     private static boolean  Check_if_Array_is_Sorted(int [] arr){
         boolean status=true;
 
-        for(int i=0;i<arr.length;i++){
+        for(int i=0;i<arr.length-1;i++){
             if(arr[i]>arr[i+1]){
                 status=false;
                 return status;
@@ -60,7 +60,7 @@ public class Monday {
 
     private static int[] Left_Rotate_Array_by_One(int [] arr,int k){
         int n=arr.length;
-        int actualRotation=k/n;
+        int actualRotation=k%n;
 
         while(actualRotation>0){
             int temp=arr[0];
@@ -69,6 +69,7 @@ public class Monday {
             }
         
             arr[n-1]=temp;
+            actualRotation--;
         }
 
         return arr;
@@ -78,7 +79,7 @@ public class Monday {
         int index=0;
 
         for(int i:arr){
-            if(i>0){
+            if(i!=0){
                 arr[index++]=i;
             }
         }
@@ -121,10 +122,10 @@ public class Monday {
             }
         }
 
-        while(i!=n){
+        while(i<n){
         result.add(ar1[i++]);
         }
-        while(j!=m){
+        while(j<m){
             result.add(ar2[j++]);
         }
 
@@ -175,23 +176,25 @@ public class Monday {
 
     private static int Find_sum_Of_Range(int l, int r,int arr[]){
         int sum=0;
-        if(l<arr.length-1 || r<arr.length-1){
-            return sum;
+        if(l<0 || r>=arr.length || l>r){
+            return 0;
         }
-        for(int i=l;i<r;i++){
+        for(int i=l;i<=r;i++){
             sum+=arr[i];
         }
 
         return sum;
     }
     private static int Maximum_Subarray_Sum(int arr[]){// kadane's algorithm
-        int sum=0, max=0;
+        int sum=0, max=Integer.MIN_VALUE;
         for(int i=0;i<arr.length;i++){
             sum+=arr[i];
+            max=Math.max(sum,max);
+            
             if(sum<0){
                 sum=0;
             }
-            max=Math.max(sum,max);
+            
         }
 
         return max;
@@ -218,68 +221,64 @@ public class Monday {
 
     private static int[] Product_of_Array_Except_Self(int arr[]){
         
-        int prefixRange=0;
-        for(int i=0;i<arr.length;i++){
-            int prefixProduct=1, suffixProduct=1;
-            while(prefixRange<i){
-                prefixProduct*=arr[prefixRange];
-                prefixRange++;
-            }
-            int suffixrange=i+1;
-            while(suffixrange<arr.length-1){
-                suffixProduct*=arr[suffixrange];
-                suffixrange++;
-            }
-
-            arr[i]=prefixProduct*suffixProduct;
+        int n = arr.length;
+        int[] res = new int[n]; // Fixed: Don't modify original array mid-flight
+        
+        int prefix = 1;
+        for (int i = 0; i < n; i++) {
+            res[i] = prefix;
+            prefix *= arr[i];
+        }
+        
+        int suffix = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            res[i] *= suffix;
+            suffix *= arr[i];
         }
 
-        return arr;
+        return res;
     }
 
     private static int Maximum_Sum_of_K_Consecutive_Elements(int [] arr,int k){// sliding window
-        int low=0;
-        int max=0;
-        while(low<(arr.length-k)){
-            int sum=arr[low];
-            for(int high=low+1;high<low+k;high++){
-                sum+=arr[high];
-            }
-            max=Math.max(max,sum);
-
-            low+=1;
-        } 
+        if (arr.length < k || k <= 0) return 0;
+        int windowSum = 0;
+        for (int i = 0; i < k; i++) {
+            windowSum += arr[i];
+        }
         
+        int max = windowSum;
+        for (int i = k; i < arr.length; i++) {
+            windowSum += arr[i] - arr[i - k]; // Sliding Window optimization
+            max = Math.max(max, windowSum);
+        }
         return max;
     }
 
-    private static void Longest_Subarray_with_Sum(int[] arr,int s){
-        int low=0;int max=0;
-        while(low<arr.length){
-            for(int high=low+1;high<arr.length;high++){
-                int sum=arr[low];
-
-                if(sum<s){
-                    sum+=arr[high];
-                    max=Math.max(max, high-low+1);
-                }else{
-                    low+=1;  // moving the sliding window by one
-                }
+    private static int Longest_Subarray_with_Sum(int[] arr,int s){
+        int low = 0, sum = 0, maxLen = 0;
+        for (int high = 0; high < arr.length; high++) {
+            sum += arr[high];
+            while (sum > s && low <= high) {
+                sum -= arr[low++];
+            }
+            if (sum == s) {
+                maxLen = Math.max(maxLen, high - low + 1);
             }
         }
+        return maxLen;
     }
 
     private static int Longest_Substring_Without_Repeating_Characters(String s){
         HashSet<Character> set=new HashSet<>();
         int low=0;int max=0;
-        for(int high=0;high<s.length()-1;high++){
+        for(int high=0;high<s.length();high++){
             char c=s.charAt(high);
             while(set.contains(c)){
                 set.remove(s.charAt(low++));
             }
-
-            max=Math.max(max,high-low+1);
             set.add(c);
+            max=Math.max(max,high-low+1);
+            
         }
 
         return max;
@@ -293,12 +292,64 @@ public class Monday {
         }
 
         for(Map.Entry<Integer,Integer> i:mpp.entrySet()){
-            if(i.getValue()==n){
+            if(i.getValue()>n){
                 System.out.println(i.getKey());
             }
         }
     }
     public static void main(String[] args) {
-        
+        System.out.println("=== STARTING COMPREHENSIVE SUITE TESTING ===\n");
+
+        // 1. Largest Element
+        int[] t1 = {5, 9, -2, 11, 4};
+        System.out.println("Largest Element", Largest_Element_in_an_Array(t1) == 11);
+
+        // 2. Second Largest with duplicate max values
+        int[] t2 = {7, 7, 2, 5, 6};
+        System.out.println("Second Largest Element", Second_Largest_Element(t2) == 6);
+
+        // 3. Check Sorted
+        int[] t3_true = {1, 3, 5, 8};
+        int[] t3_false = {1, 5, 3, 8};
+        System.out.println("Check Sorted (True Scenario)", Check_if_Array_is_Sorted(t3_true));
+        System.out.println("Check Sorted (False Scenario)", !Check_if_Array_is_Sorted(t3_false));
+
+        // 4. Reverse Array
+        int[] t4 = {1, 2, 3, 4};
+        int[] t4_rev = Reverse_an_Array(t4);
+        System.out.println("Reverse Array", t4_rev[0] == 4 && t4_rev[3] == 1);
+
+        // 5. Left Rotate by K steps
+        int[] t5 = {1, 2, 3, 4, 5};
+        int[] t5_rot = Left_Rotate_Array_by_K(t5, 2);
+        System.out.println("Left Rotate by K", t5_rot[0] == 3 && t5_rot[4] == 2);
+
+        // 6. Move Zeroes
+        int[] t6 = {0, -1, 0, 3, 12};
+        int[] t6_res = Move_All_Zeroes_to_End(t6);
+        System.out.println("Move Zeroes to End", t6_res[0] == -1 && t6_res[3] == 0 && t6_res[4] == 0);
+
+        // 7. Remove Duplicates
+        int[] t7 = {1, 1, 2, 2, 3};
+        System.out.println("Remove Duplicates Len", Remove_Duplicates_from_Sorted_Array(t7) == 3);
+
+        // 8. Merge Sorted Arrays
+        int[] t8_a = {1, 3, 5};
+        int[] t8_b = {2, 4, 6};
+        ArrayList<Integer> merged = Merge_Two_Sorted_Arrays(t8_a, t8_b);
+        System.out.println("Merge Two Sorted Arrays", merged.size() == 6 && merged.get(1) == 2);
+
+        // 9. Two Sum
+        int[] t9 = {2, 7, 11, 15};
+        int[] t9_ans = Two_Sum(t9, 9);
+        System.out.println("Two Sum Indices Lookup", (t9_ans[0] == 1 && t9_ans[1] == 0) || (t9_ans[0] == 0 && t9_ans[1] == 1));
+
+        // 10. Pair with Sum Sorted
+        int[] t10 = {1, 2, 4, 6, 9};
+        System.out.println("Pair with Given Sum", Pair_with_Given_Sum_Sorted_Array(t10, 10));
+
+        // 11. Running Sum
+        int[] t11 = {1, 2, 3, 4};
+        System.out.println("Running Sum Evaluation", Running_Sum_of_Array(t11) == 10);
     }
 }
