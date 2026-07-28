@@ -187,8 +187,60 @@ public class tuesday {
             }
         }
     }
+
+    private static void GCD(int a, int b){
+        while(b!=0){
+            int remainder=a%b;
+            a=b;
+            b=remainder;
+        }
+        System.out.println("greatest common divisor (GCD): "+ a);
+    }
+
+    private static int LCM(int a, int b){
+        if (a == 0 || b == 0) {
+            return 0; 
+        }
+        
+        // Store original values to compute LCM later
+        int num1 = Math.abs(a);
+        int num2 = Math.abs(b);
+        
+        // Inline Euclid's algorithm to find GCD
+        while (num2 != 0) {
+            int remainder = num1 % num2;
+            num1 = num2;
+            num2 = remainder;
+        }
+        int gcd = num1;
+        
+        // Calculate LCM using the original values
+        return Math.abs(a) / gcd * Math.abs(b);
+    }
     
-    
+    private static boolean Check_Armstrong_Number(int n){
+        int temp=0;
+        int dup=n;
+        while(n>0){
+            int t=n%10;
+            temp+=t*t*t;
+            n=n/10;
+        }
+
+        if(temp==dup){
+            return true;
+        }
+        return false;
+    }
+
+    private static int fibonacci(int n){
+        
+        if(n==0 || n==1){
+            return n;
+        }
+        return (fibonacci(n-1)+ fibonacci(n-2));
+
+    }
     public static void main(String[] args) {
         
     }
