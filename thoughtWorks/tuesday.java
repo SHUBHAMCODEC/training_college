@@ -26,6 +26,7 @@ public class tuesday {
                 System.out.println("Not a palindrome... ");
                 return;
             }
+            low++;high--;
         }
         System.out.println("its is palindrome string.... ");
     }
@@ -95,6 +96,11 @@ public class tuesday {
     }
 
     private static void anagram(String s,String t){
+        if (s.length() != t.length()) { // FIXED: Basic length mismatch validation
+            System.out.println(s + " and " + t + " are not anagrams (length mismatch).");
+            return;
+        }
+
         char[] c1=new char[26];
 
         for(int i=0;i<s.length();i++){
@@ -122,11 +128,13 @@ public class tuesday {
             mpp.put(i,mpp.getOrDefault(i, 0)+1);
         }
 
-        for(Map.Entry<Character,Integer>e:mpp.entrySet()){
-            if(e.getValue()==1){
-                System.out.println("First_Non_Repeating_Character :"+ e.getKey());
+         for(char ch : s.toCharArray()) {
+            if(mpp.get(ch) == 1) {
+                System.out.println("First_Non_Repeating_Character in " + s + " is: " + ch);
+                return;
             }
         }
+        System.out.println("First_Non_Repeating_Character in " + s + " is: None");
     }
 
     private static void Longest_Common_Prefix(String[] s) {
@@ -154,12 +162,16 @@ public class tuesday {
         System.out.println("Longest Common Prefix: " + sb.toString());
     }
     private static void String_Compression(String s){
+        if (s == null || s.isEmpty()) {
+            System.out.println("String Compression: ");
+            return;
+        }
         StringBuilder sb=new StringBuilder();
         int cnt=0;
         char c[]=s.toCharArray();
         for(int i=0;i<c.length;i++){
             cnt+=1;
-            if(c[i]==c[i+1]){
+            if(i + 1 < c.length && c[i]==c[i+1]){
                 continue;
             }else{
                 sb.append(c[i]);
@@ -172,7 +184,8 @@ public class tuesday {
     }
 
     private static boolean Check_Prime_Number(int n){
-        for(int i=2;i<Math.sqrt(n);i++){
+        if (n <= 1) return false;
+        for(int i=2;i<=Math.sqrt(n);i++){
             if(n%i==0){
                 return false;
             }
@@ -242,6 +255,62 @@ public class tuesday {
 
     }
     public static void main(String[] args) {
-        
+        System.out.println("--- 1. Reverse String ---");
+        reverseString("java");
+
+        System.out.println("\n--- 2. Palindrome String ---");
+        palindromeString("radar");
+        palindromeString("hello");
+
+        System.out.println("\n--- 3. Palindrome Integer ---");
+        palindromeInteger(121);
+        palindromeInteger(123);
+
+        System.out.println("\n--- 4. Count Vowels & Consonants ---");
+        countConsonentandVowels("Hello World!");
+
+        System.out.println("\n--- 5. Convert Lowercase to Uppercase ---");
+        convertLowerToUppercase("programming123");
+
+        System.out.println("\n--- 6. Remove Spaces ---");
+        RemoveSpace(" J a v a   S t a c k ");
+
+        System.out.println("\n--- 7. Count Character Frequencies ---");
+        countFrequency("apple");
+
+        System.out.println("\n--- 8. Anagram Validation ---");
+        anagram("silent", "listen");
+        anagram("hello", "world");
+
+        System.out.println("\n--- 9. First Non-Repeating Character ---");
+        First_Non_Repeating_Character("swiss");
+        First_Non_Repeating_Character("aabbc");
+
+        System.out.println("\n--- 10. Longest Common Prefix ---");
+        String[] words = {"flower", "flow", "flight"};
+        Longest_Common_Prefix(words);
+
+        System.out.println("\n--- 11. String Compression ---");
+        String_Compression("aabcccccaaa");
+
+        System.out.println("\n--- 12. Prime Check ---");
+        System.out.println("Is 9 prime? " + Check_Prime_Number(9));
+        System.out.println("Is 17 prime? " + Check_Prime_Number(17));
+
+        System.out.println("\n--- 13. Output All Factors ---");
+        allFactors(24);
+
+        System.out.println("\n--- 14. GCD Calculation ---");
+        GCD(48, 18);
+
+        System.out.println("\n--- 15. LCM Calculation ---");
+        System.out.println("LCM of (12, 18): " + LCM(12, 18));
+
+        System.out.println("\n--- 16. Armstrong Number Check ---");
+        System.out.println("Is 153 Armstrong? " + Check_Armstrong_Number(153));
+        System.out.println("Is 123 Armstrong? " + Check_Armstrong_Number(123));
+
+        System.out.println("\n--- 17. Fibonacci Term Retrieval ---");
+        System.out.println("Fibonacci term at index 6: " + fibonacci(6));
     }
 }
