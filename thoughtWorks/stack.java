@@ -90,7 +90,76 @@ public class stack {
 
         System.out.println("Infix: " + s + " -> Postfix: " + sb.toString());
     }
-   
+
+    private static char[] reverseChar(char[] c){
+        int low=0,high=c.length-1;
+
+        while(low<high){
+            char temp=c[low];
+            c[low]=c[high];
+            c[high]=temp;
+
+            low++;high--;
+        }
+
+        return c;
+
+    }
+    private static void infixToPrefix(String s){
+        s=s.toLowerCase();
+        char c[]=reverseChar(s.toCharArray());
+        Stack<Character> st=new Stack<>();
+        StringBuilder sb=new StringBuilder();
+
+        for(char i:c){
+            if(i>='a' && i<='z'){
+                sb.append(i);
+            }else if(i=='('){
+                st.push(i);
+            }else if(i==')'){
+                while(!st.isEmpty() && st.peek()=='('){
+                    sb.append(st.pop());
+                }
+
+                if(st.peek()=='('){
+                    st.pop();
+                }
+            }
+
+            else if(i=='+' || i=='-' || i=='*' || i=='/' || i=='^'){
+                while(!st.isEmpty() && prefixPrecedence(i)<=prefixPrecedence(st.peek())){
+                    sb.append(st.pop());
+                }
+
+                st.push(i);
+            }
+        }
+
+        while(!st.isEmpty()){
+            sb.append(st.pop());
+        }
+
+
+        sb=sb.reverse();
+
+        System.out.println("infix: "+s+ "---- and prefix Notation is : -----"+ sb.toString());
+    }
+
+    private static int prefixPrecedence(char ch){
+        switch(ch){
+            case '+':
+            case '-':
+                return 1;
+            case '*':
+            case '/':
+                return 2;
+            case '^':
+                return 3;
+            
+        }
+
+        return -1;
+    }
     public static void main(String args[]){
 
         // Testing Queue-based Stack
