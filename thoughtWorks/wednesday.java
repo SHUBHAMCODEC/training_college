@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class wednesday {
     
@@ -195,6 +198,158 @@ public class wednesday {
 
 
 
+
+    private static void binarySearch(int arr[],int target){
+        int low=0;
+        int high=arr.length-1;
+        while(low<high){
+            int mid=low+(high-low)/2;
+
+            if(arr[mid]==target){
+                System.out.println("element found on index: "+ mid);
+            }else if(arr[mid]<target){
+                low=mid+1;
+            }else{
+                high=mid-1;
+            }
+        }
+    }
+
+    private static int UpperBound(int arr[],int k){
+        int low = 0, high = arr.length - 1;
+        int ans = arr.length;
+        while(low <= high){
+            int mid = low + (high - low) / 2;
+            if(arr[mid] > k){
+                ans = mid;
+                high = mid - 1; // Look on left side
+            } else {
+                low = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+    private static int lowerBound(int[] arr, int k){
+        int low = 0, high = arr.length - 1;
+        int ans = arr.length; 
+        while(low <= high){
+            int mid = low + (high - low) / 2;
+            if(arr[mid] >= k){
+                ans = mid;
+                high = mid - 1; // Look on left side
+            } else {
+                low = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+    private static void booleanCommand(int arr[],int k){
+        ArrayList<Integer> ls=new ArrayList<>();
+        int st=findRange(arr, k, true);
+        ls.add(st);
+        if(!ls.isEmpty()){
+            int nd=findRange(arr, k, false);
+            ls.add(nd);
+        }
+        System.out.println(ls);
+    }
+    private static int findRange(int arr[],int k,boolean ch){
+        int low=0,high=arr.length-1;
+        while(low<high){
+            int mid=low+(high-low)/2;
+
+            if(arr[mid]==k){
+                if(ch==true){
+                    low=mid+1;
+                }else{
+                    high=mid-1;
+                }
+                return mid;
+            }else if(arr[mid]>k){
+                high=mid-1;
+            }else{
+
+            }
+        }
+
+        return 0;
+    }
+
+    private static int insertPosition(int arr[],int k){
+        int low=0,high=arr.length-1;
+        while(low<high){
+            int mid=low+(high-low)/2;
+            if(arr[mid]==k || arr[mid]<k){
+                if(arr[mid]==k || arr[mid+1]>k){
+                    return mid+1;
+                }
+            }else if(arr[mid]>k){
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+
+        return -1;
+    }
+
+     private static int search(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            // Target found
+            if (nums[mid] == target) {
+                return mid;
+            }
+
+            // Check if the left half is sorted
+            if (nums[left] <= nums[mid]) {
+                // Check if target lies within the sorted left half
+                if (nums[left] <= target && target < nums[mid]) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            } 
+            // Otherwise, the right half must be sorted
+            else {
+                // Check if target lies within the sorted right half
+                if (nums[mid] < target && target <= nums[right]) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+        }
+
+        // Target not found
+        return -1;
+    }
+    private static int findPeakElement(int[] nums) {
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+
+            // If we are on an ascending slope, peak is to the right
+            if (nums[mid] < nums[mid + 1]) {
+                left = mid + 1;
+            } 
+            // If we are on a descending slope, mid could be a peak or peak is to the left
+            else {
+                right = mid;
+            }
+        }
+
+        // Left and right converge to the peak element index
+        return left;
+    }
     public static void main(String[] args) {
         int[] data = {4, 2, 1, 3, 0, 2};
         bubbleSort(data.clone());
