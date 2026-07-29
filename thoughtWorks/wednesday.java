@@ -157,6 +157,44 @@ public class wednesday {
         System.out.println("After Dutch Flag:  " + Arrays.toString(arr));
     }
 
+
+
+    private static void mergeIntervals(List<List<Integer>> ls) {
+        // Handle empty or single interval cases
+        if (ls == null || ls.size() <= 1) {
+            return;
+        }
+
+        // 1. Sort intervals by their start values
+        Collections.sort(ls, (a, b) -> Integer.compare(a.get(0), b.get(0)));
+
+        List<List<Integer>> merged = new ArrayList<>();
+        // Initialize with the first interval
+        List<Integer> currentInterval = ls.get(0);
+        merged.add(currentInterval);
+
+        // 2. Iterate and merge remaining intervals
+        for (int i = 1; i < ls.size(); i++) {
+            List<Integer> nextInterval = ls.get(i);
+
+            // Check if intervals overlap
+            if (currentInterval.get(1) >= nextInterval.get(0)) {
+                // Merge by updating the end time to the maximum end time
+                currentInterval.set(1, Math.max(currentInterval.get(1), nextInterval.get(1)));
+            } else {
+                // Move to the next disjoint interval
+                currentInterval = nextInterval;
+                merged.add(currentInterval);
+            }
+        }
+
+        // 3. Update the original list to reflect merged results
+        ls.clear();
+        ls.addAll(merged);
+    }
+
+
+
     public static void main(String[] args) {
         int[] data = {4, 2, 1, 3, 0, 2};
         bubbleSort(data.clone());
