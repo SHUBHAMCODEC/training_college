@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class thursday {
 
     private static void reverseArray(int[] arr){
@@ -20,7 +22,6 @@ public class thursday {
         for(int i:arr){
             System.out.print(i+" ");
         }
-
     }
 
     private static void palindromeString(String s){
@@ -31,12 +32,9 @@ public class thursday {
                 System.out.println("Given String is not a valid palindrome...");
                 return;
             }
-
             low++;high--;
         }
-        
         System.out.println("Given String is a valid palindrome...");
-        
     }
 
     private static void removeDuplicatesFromSortedArray(int arr[]){
@@ -51,8 +49,6 @@ public class thursday {
             if(arr[slow]!=arr[fast]){
                 arr[index++]=arr[fast];
                 slow=fast;
-            }else{
-                continue;
             }
         }
         System.out.print("Array withOut duplicates : ");
@@ -99,10 +95,9 @@ public class thursday {
                 high--;
             }
         }
-
         return new int[]{-1,-1};
-
     }
+
     public static void maxArea(int[] height) {
         int left=0, right=height.length-1;
         int area=0, max=0;
@@ -119,6 +114,7 @@ public class thursday {
         }
         System.out.println("maximum amount of water a container can store: "+max); 
     }
+
     public static void sortedSquares(int[] nums) {
         int[] res = new int[nums.length];
         int left = 0;
@@ -139,36 +135,105 @@ public class thursday {
             System.out.print(i+" ");
         }
         System.out.println();
-
     }
+
+    //--------------------Sliding Window -------------------------------------------------
+
+    private static void maximumSubArraywithSizeK(int arr[],int k){
+        if (arr.length < k) return;
+        int windowSum=0;
+        for(int i=0;i<k;i++){
+            windowSum+=arr[i];
+        }
+
+        int maxSum=windowSum;
+        for(int i=k;i<arr.length;i++){
+            windowSum+=arr[i]-arr[i-k];
+            maxSum=Math.max(maxSum, windowSum);
+        }
+        System.out.println("maximum SubArray with Size 'K' : "+ maxSum);
+    }
+
+    private static void First_Negative_Integer_in_Every_Window_of_Size_K(int[] arr,int k){
+        ArrayList<Integer>ls=new ArrayList<>();
+        Queue<Integer> q=new LinkedList<>();
+        for(int i=0;i<k;i++){
+            if(arr[i]<0){
+                q.add(i);
+            }
+        }
+
+        if(!q.isEmpty()){
+            ls.add(arr[q.peek()]);
+        }else{
+            ls.add(0);
+        }
+
+        for(int i=k;i<arr.length;i++){
+            while(!q.isEmpty() && q.peek()<=i-k){
+                q.remove();
+            }
+            if(arr[i]<0){
+                q.add(i);
+            }
+
+            if(!q.isEmpty()){
+                ls.add(arr[q.peek()]);
+            }else{
+                ls.add(0);
+            }
+        }
+        System.out.println("First Negative Integer in Every Window of Size K: "+ls);
+    }
+
+    private static void Longest_Subarray_with_SumLessthanK(int[] arr,int k){
+        int sum=0,maxLength=0,low=0;
+        for(int high=0;high<arr.length;high++){
+            sum+=arr[high];
+            while(sum>=k && low<=high){
+                sum-=arr[low];
+                low++;
+            }
+            if(sum<k){
+                maxLength=Math.max(maxLength, high-low+1);
+            }
+        }
+        System.out.println("Length of Longest Subarray with Sum < " + k + ": " + maxLength);
+    }
+
+    private static void longestSubStringWithoutRepeatingCharacters(String s){
+        HashSet<Character> stt=new HashSet<>();
+        int low=0; int maxLength=0;
+        for(int high=0;high<s.length();high++){
+            while(stt.contains(s.charAt(high))){
+                stt.remove(s.charAt(low));
+                low++; // Fixed infinite loop here
+            }
+
+            stt.add(s.charAt(high));
+            maxLength=Math.max(maxLength,high-low+1);
+        }
+        System.out.println("longest SubString Without Repeating Characters: "+ maxLength);
+    }
+
     public static void main(String[] args) {
         int arr[]={1,2,3,4,5,6,7,8,15,18,20,25};
-        //reverse Array
         reverseArray(arr); 
 
         System.out.println("\n");
-        // palindrome
-        palindromeString(new String("aman"));
-        palindromeString(new String("aabaabaabaab"));
-        palindromeString(new String ("aaaabbbccdccbbbaaaa"));
-        palindromeString(new String("Naman")); 
+        palindromeString("aman");
+        palindromeString("aabaabaabaab");
+        palindromeString("aaaabbbccdccbbbaaaa");
+        palindromeString("Naman"); 
         
         System.out.println("\n");
-
-        //remove Duplicates from sorted Array
-
         removeDuplicatesFromSortedArray(new int[]{1,2,2,3,4,4,4,5,6,7,8,9,9,10,10,11,12,15,15,15,25});
 
         System.out.println();
-
-        // Move All zeroes to End
-
         moveZeroestoEnd(new int[]{0,1,2,0,0,3,0,4,0,0,5,6,0,7,0,0});
         moveZeroestoEnd(new int[]{1,0,2,3,0,4,5,0,6,0,7,0,8,9,10});
 
         System.out.println("\n");
-
-        //Two Sum II
         int sum[]=TwoSum(new int[]{1,2,3,4,5,7}, 11);
         
         System.out.print("Two Sum array : ");
@@ -177,15 +242,26 @@ public class thursday {
         }
         System.out.println("\n");
 
-        // maximum water an container have
-
         maxArea(new int[]{1,8,6,2,5,4,8,3,7});
 
         System.out.println("\n");
-
-        // square of sorted Array
         sortedSquares(new int[]{-7,-3,2,3,11});
         sortedSquares(new int[]{-4,-1,0,3,10});
+
+        System.out.println("\n --------------------Sliding Window -------------------------------------------------");
+        maximumSubArraywithSizeK(new int[]{1,0,2,3,0,4,5,0,1}, 2);
+        maximumSubArraywithSizeK(new int[]{1,0,2,3,0,4,5,0,1}, 3);
+        maximumSubArraywithSizeK(new int[]{1,0,2,3,0,4,5,0,1}, 4);
+
+        System.out.println("\n");
+        First_Negative_Integer_in_Every_Window_of_Size_K(new int[]{12, -1, -7, 8, -15, 30, 16, 28}, 3);
+
+        System.out.println("\n");
+        // Note: The array size (5) is less than K (7). Added boundary check inside the method to prevent out of bounds.
+        maximumSubArraywithSizeK(new int[]{2, 1, 3, 4, 5}, 7); 
+        
+        System.out.println(); // Fixed syntax truncation here
+
+        longestSubStringWithoutRepeatingCharacters(new String("abcabcbb"));
     }
 }
-
