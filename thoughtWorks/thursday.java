@@ -261,6 +261,45 @@ public class thursday {
         }
         System.err.println("Minimum Size Subarray Sum: "+miniSize);
     }
+
+    private static int[] slidingWindowMaximum(int[] nums, int k) {
+        // Edge case: if array is empty or k is 0
+        if (nums == null || nums.length == 0 || k <= 0) {
+            return new int[0];
+        }
+        
+        int n = nums.length;
+        int[] result = new int[n - k + 1]; // Total windows = n - k + 1
+        int ri = 0; // Index for the result array
+        
+        // Deque will store indices of elements
+        Deque<Integer> q = new ArrayDeque<>();
+        
+        for (int i = 0; i < n; i++) {
+            // 1. Remove indices that are out of the current window boundary
+            if (!q.isEmpty() && q.peekFirst() == i - k) {
+                q.pollFirst();
+            }
+            
+            // 2. Maintain monotonic decreasing order
+            // Remove elements from the back that are smaller than the current element
+            while (!q.isEmpty() && nums[q.peekLast()] <= nums[i]) {
+                q.pollLast();
+            }
+            
+            // Add current element's index to the back
+            q.offerLast(i);
+            
+            // 3. The first window hits its full size at index k - 1
+            // From here on, the front of the deque is the maximum for the current window
+            if (i >= k - 1) {
+                result[ri++] = nums[q.peekFirst()];
+            }
+        }
+        
+        return result;
+    }
+
     public static void main(String[] args) {
         int arr[]={1,2,3,4,5,6,7,8,15,18,20,25};
         reverseArray(arr); 
@@ -314,5 +353,8 @@ public class thursday {
 
         System.out.println("\n");
         Minimum_Size_Subarray_Sum(new int[]{2,3,1,2,4,3},7);
+
+        System.out.println("/n");
+        slidingWindowMaximum(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3);
     }
 }
