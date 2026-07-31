@@ -354,7 +354,8 @@ public class thursday {
         System.out.println("\n");
         Minimum_Size_Subarray_Sum(new int[]{2,3,1,2,4,3},7);
 
-        System.out.println("/n");
+        System.out.println("\n");
         slidingWindowMaximum(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3);
+
     }
 }
