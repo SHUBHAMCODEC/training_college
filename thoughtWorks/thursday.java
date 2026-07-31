@@ -216,6 +216,51 @@ public class thursday {
         System.out.println("longest SubString Without Repeating Characters: "+ maxLength);
     }
 
+    private static void Maximum_Number_of_Vowels_in_a_Substring_of_Length_K(String s,int k){
+        
+        int count=0;
+        for(int i=0;i<k;i++){
+            char c=s.charAt(i);
+            if(c=='a'|| c=='e'||c=='i'|| c=='o'||c=='u'){
+                count++;
+            }
+        }
+        int maxCount=count;
+        
+        for(int i=k;i<s.length();i++){
+            char c=s.charAt(i-k);
+            if(c=='a'|| c=='e'||c=='i'|| c=='o'||c=='u'){
+                count--;
+            }
+            char curr=s.charAt(i);
+            if(curr=='a'|| curr=='e'||curr=='i'|| curr=='o'||curr=='u'){
+                count++;
+            }
+
+            maxCount=Math.max(maxCount,count);
+        }
+
+        System.out.println("Maximum Number of Vowels in a Substring of Length ("+k+") : "+maxCount);
+    }
+
+
+    private static void Minimum_Size_Subarray_Sum(int arr[],int target){
+        int sum=0,low=0;
+        int miniSize=Integer.MAX_VALUE;
+        for(int high=0;high<arr.length;high++){
+            sum+=arr[high];
+            while(sum>=target && low<=high){
+                int size=high-low+1;
+                sum-=arr[low++];
+                miniSize=Math.min(size,miniSize);
+            }
+        }
+
+        if(miniSize==Integer.MAX_VALUE){
+            miniSize=-1;
+        }
+        System.err.println("Minimum Size Subarray Sum: "+miniSize);
+    }
     public static void main(String[] args) {
         int arr[]={1,2,3,4,5,6,7,8,15,18,20,25};
         reverseArray(arr); 
@@ -263,5 +308,11 @@ public class thursday {
         System.out.println(); // Fixed syntax truncation here
 
         longestSubStringWithoutRepeatingCharacters(new String("abcabcbb"));
+
+        System.out.println("\n");
+        Maximum_Number_of_Vowels_in_a_Substring_of_Length_K(new String("abciiidef"), 3);
+
+        System.out.println("\n");
+        Minimum_Size_Subarray_Sum(new int[]{2,3,1,2,4,3},7);
     }
 }
