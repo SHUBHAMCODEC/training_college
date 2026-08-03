@@ -195,7 +195,7 @@ public class friday {
         for(int n:nums){
             int diff=n-reverse(n);
             if(mpp.containsKey(diff)){
-                count=count+mpp.get(diff);
+                count=(count+mpp.get(diff))%s;
             }
             mpp.put(diff,mpp.getOrDefault(diff, 0)+1);
         }
@@ -221,11 +221,13 @@ public class friday {
         }
 
         List<Character> ls=new ArrayList<>(mpp.keySet());
-        ls.sort((a,b)-> {
-            if(mpp.get(a)==mpp.get(b)){
-                return mpp.get(a).compareTo(mpp.get(b));
+        ls.sort((a, b) -> {
+            int freqA = mpp.get(a);
+            int freqB = mpp.get(b);
+            if (freqA == freqB) {
+                return Character.compare(a, b); // Sorts alphabetically if frequencies match
             }
-            return mpp.get(b)-mpp.get(a);
+            return Integer.compare(freqB, freqA); 
         });
 
         StringBuilder sb=new StringBuilder();
