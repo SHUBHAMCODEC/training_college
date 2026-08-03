@@ -187,6 +187,33 @@ public class friday {
         // Return the combined lists of grouped anagrams
         System.out.println(anagramMap);
     }
+
+    private static int Nicepairs(int [] nums){
+        long count=0;
+        int s=1_000_000_007;
+        HashMap<Integer,Integer> mpp=new HashMap<>();
+        for(int n:nums){
+            int diff=n-reverse(n);
+            if(mpp.containsKey(diff)){
+                count=count+mpp.get(diff);
+            }
+            mpp.put(diff,mpp.getOrDefault(diff, 0)+1);
+        }
+
+        return (int) count;
+
+    }
+
+    private static int reverse(int n){
+        int rev=0;
+        while(n>0){
+            rev=(rev*10)+(n%10);
+            n/=10;
+        }
+        return rev;
+    }
+
+    
     public static void main(String[] args) {
         countFrequency(new int[]{1, 2, 2, 3, 1, 4, 2});
         System.out.println("\n");
