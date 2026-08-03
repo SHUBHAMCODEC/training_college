@@ -156,7 +156,37 @@ public class friday {
             
 
     }
-
+    
+    public static void groupAnagrams(String[] strs) {
+        // Handle empty or null input gracefully
+        if (strs == null || strs.length == 0) {
+            return ;
+        }
+        
+        // Map to store grouped anagrams using a serialized frequency key
+        Map<String, List<String>> anagramMap = new HashMap<>();
+        
+        for (String s : strs) {
+            // Step 1: Count frequencies of lowercase English letters (a-z)
+            int[] count = new int[26];
+            for (char c : s.toCharArray()) {
+                count[c - 'a']++;
+            }
+            
+            // Step 2: Build a unique string key based on frequencies (e.g., "#1#0#2...")
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < 26; i++) {
+                sb.append('#').append(count[i]);
+            }
+            String key = sb.toString();
+            
+            // Step 3: Add the original string to the corresponding list
+            anagramMap.computeIfAbsent(key, k -> new ArrayList<>()).add(s);
+        }
+        
+        // Return the combined lists of grouped anagrams
+        System.out.println(anagramMap);
+    }
     public static void main(String[] args) {
         countFrequency(new int[]{1, 2, 2, 3, 1, 4, 2});
         System.out.println("\n");
