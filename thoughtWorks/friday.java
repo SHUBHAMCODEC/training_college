@@ -213,7 +213,31 @@ public class friday {
         return rev;
     }
 
-    
+    private static String printaccToFre(String s){
+        HashMap<Character,Integer>mpp=new HashMap<>();
+
+        for(char c:s.toCharArray()){
+            mpp.put(c,mpp.getOrDefault(c,0)+1);
+        }
+
+        List<Character> ls=new ArrayList<>(mpp.keySet());
+        ls.sort((a,b)-> {
+            if(mpp.get(a)==mpp.get(b)){
+                return mpp.get(a).compareTo(mpp.get(b));
+            }
+            return mpp.get(b)-mpp.get(a);
+        });
+
+        StringBuilder sb=new StringBuilder();
+        for(char c:ls){
+            int fre=mpp.get(c);
+            while(fre -- >0){
+                sb.append(c);
+            }
+        }
+
+        return sb.toString();
+    }
     public static void main(String[] args) {
         countFrequency(new int[]{1, 2, 2, 3, 1, 4, 2});
         System.out.println("\n");
