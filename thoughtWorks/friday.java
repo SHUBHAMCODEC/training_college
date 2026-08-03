@@ -271,5 +271,25 @@ public class friday {
 
         System.out.println("\n");
         groupAnagrams(new String[]{"eat","tea","tan","ate","nat","bat"});
+
+        // Test 1: Standard matching pairs (13-31=-18, 35-53=-18, 24-42=-18). Total 3 pairs.
+        int[] nums1 = {13, 10, 35, 24, 76}; 
+        System.out.println("Test 1: " + Nicepairs(nums1) + " (Expected: 3)");
+
+        // Test 2: No matching pairs (all distinct differences). Total 0 pairs.
+        int[] nums2 = {1, 20, 300}; 
+        System.out.println("Test 2: " + Nicepairs(nums2) + " (Expected: 0)");
+
+
+        // --- printaccToFre Tests ---
+        System.out.println("\n=== printaccToFre ===");
+        
+        // Test 1: Sort by high frequency first ('e'), then tie-break alphabetically ('r' before 't').
+        String str1 = "tree"; 
+        System.out.println("Test 1: " + printaccToFre(str1) + " (Expected: eert)");
+
+        // Test 2: All frequencies are equal (1), sorted purely alphabetically.
+        String str2 = "dcba"; 
+        System.out.println("Test 2: " + printaccToFre(str2) + " (Expected: abcd)");
     }    
 }
