@@ -53,7 +53,15 @@ public class tuesday2 {
     }
 
 
-    
+    private static void InserAtBeginn(int data){
+        Node curr=head.next;
+        Node newNode=new Node(data);
+        head=newNode;
+        head.next=curr;
+
+        printll(head);
+
+    }
     public static void main(String[] args) {
         creation(new int[]{1,2,3,4,5,6});
         reverseBYiterative();
