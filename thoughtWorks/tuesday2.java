@@ -52,6 +52,8 @@ public class tuesday2 {
         return newNode; 
     }
 
+
+    
     public static void main(String[] args) {
         creation(new int[]{1,2,3,4,5,6});
         reverseBYiterative();
