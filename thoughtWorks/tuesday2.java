@@ -62,11 +62,69 @@ public class tuesday2 {
         printll(head);
 
     }
+
+    private static void Insert_at_End(Node head,int data){
+
+        Node newNode=new Node(data);
+        Node curr=head;
+
+        while(curr.next!=null){
+            curr.next=newNode;
+            curr=curr.next;
+            curr.next=null;
+        }
+
+        printll(head);
+    }
+
+    private static Node deleteNode(Node head,int data){
+        
+        Node temp=head;
+        if (temp.data==data){
+            return null;
+        }
+        Node prev=null;
+        while(temp.data!=data){
+            prev=temp;
+            temp=temp.next;
+        }
+        prev.next=prev.next.next;
+
+        return head;
+    }
+
+    private static void searchElement(Node head,int data){
+        Node temp=head;
+        int count=0;
+
+        while(temp.data!=data){
+            count++;
+            temp=temp.next;
+        }
+
+        System.out.println(data+" found at place "+ count);
+    }
+
+    private static void middleOfll(Node head){// turtoise-hair algorithm
+        Node slow=head,fast=head;
+
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+
+        System.out.println("Middle List is "+ slow.data);
+    }
+
+    private static void detectCycle(Node head){
+        
+    }
     public static void main(String[] args) {
         creation(new int[]{1,2,3,4,5,6});
         reverseBYiterative();
         Node recurRever=reverseByrecursion(head);
         printll(recurRever);
+
     }
 
 
