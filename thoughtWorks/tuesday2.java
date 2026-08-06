@@ -212,6 +212,17 @@ public class tuesday2 {
         return headNode;
     } 
 
+    private static void palindromeList(Node pal_head){
+        Node slow=pal_head; Node fast=pal_head;
+
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+
+        Node pal_head2=null;
+        Node curr
+    }
     public static void main(String[] args) { 
         System.out.println("--- 1. Testing Creation and Print ---");
         creation(new int[]{10, 20, 30, 40, 50}); 
