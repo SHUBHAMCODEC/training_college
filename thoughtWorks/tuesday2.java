@@ -212,7 +212,7 @@ public class tuesday2 {
         return headNode;
     } 
 
-    private static void palindromeList(Node pal_head){
+    private static boolean palindromeList(Node pal_head){
         Node slow=pal_head; Node fast=pal_head;
 
         while(fast!=null && fast.next!=null){
@@ -220,8 +220,65 @@ public class tuesday2 {
             fast=fast.next.next;
         }
 
-        Node pal_head2=null;
-        Node curr
+        Node pal_head2=reverseForPalindrome(slow.next);
+        slow.next=null;
+        Node currLeft=pal_head; Node currRight=pal_head2;
+
+        while(currLeft!=null && currRight!=null){
+            if(currLeft.data!=currRight.data){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static  Node reverseForPalindrome(Node head_pal){
+        if(head_pal==null || head_pal.next==null){
+            return head_pal;
+        }
+        Node newNode=reverseForPalindrome(head_pal.next);
+        head_pal.next.next=head_pal;
+        head_pal.next=null;
+
+
+        return newNode;
+    }
+
+    private static void intersectionOfList(Node ls1,Node ls2){
+        Node curr1=ls1; Node curr2=ls2;
+
+        while(curr1.data!=curr2.data){
+            curr1=curr1.next;
+            curr2=curr2.next;
+            if(curr1==null){
+                curr1=ls2;
+            }else if(curr2==null){
+                curr2=ls1;
+            }
+        }
+
+        System.out.println("Intersection of two List is :"+ curr1.data);
+    }
+
+    private static void ReverseInKgroups(Node head_rev,int k){
+        Node curr=head_rev;
+        int cnt=1;
+
+        while(curr!=null){
+            if(cnt==k){
+                Node temp=curr;
+                Node revH=reverseForPalindrome(curr);
+                curr.next=temp.next;
+
+                cnt=0;
+            }
+            curr=curr.next;
+            cnt++;
+        }
+
+        printll(head_rev);
+
     }
     public static void main(String[] args) { 
         System.out.println("--- 1. Testing Creation and Print ---");
