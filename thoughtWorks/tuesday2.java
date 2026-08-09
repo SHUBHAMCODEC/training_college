@@ -245,23 +245,27 @@ public class tuesday2 {
         return newNode;
     }
 
-    private static void intersectionOfList(Node ls1,Node ls2){
-        Node curr1=ls1; Node curr2=ls2;
+    
 
-        while(curr1.data!=curr2.data){
-            curr1=curr1.next;
-            curr2=curr2.next;
-            if(curr1==null){
-                curr1=ls2;
-            }else if(curr2==null){
-                curr2=ls1;
+    private static void ReverseInKgroups(Node head_rev,int k){
+        Node curr=head_rev;
+        int cnt=1;
+
+        while(curr!=null){
+            if(cnt==k){
+                Node temp=curr;
+                Node revH=reverseForPalindrome(curr);
+                curr.next=temp.next;
+
+                cnt=0;
             }
+            curr=curr.next;
+            cnt++;
         }
 
-        System.out.println("Intersection of two List is :"+ curr1.data);
-    }
+        printll(head_rev);
 
-    
+    }
     public static void main(String[] args) { 
         System.out.println("--- 1. Testing Creation and Print ---");
         creation(new int[]{10, 20, 30, 40, 50}); 
