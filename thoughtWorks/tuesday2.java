@@ -261,25 +261,7 @@ public class tuesday2 {
         System.out.println("Intersection of two List is :"+ curr1.data);
     }
 
-    private static void ReverseInKgroups(Node head_rev,int k){
-        Node curr=head_rev;
-        int cnt=1;
-
-        while(curr!=null){
-            if(cnt==k){
-                Node temp=curr;
-                Node revH=reverseForPalindrome(curr);
-                curr.next=temp.next;
-
-                cnt=0;
-            }
-            curr=curr.next;
-            cnt++;
-        }
-
-        printll(head_rev);
-
-    }
+    
     public static void main(String[] args) { 
         System.out.println("--- 1. Testing Creation and Print ---");
         creation(new int[]{10, 20, 30, 40, 50}); 
