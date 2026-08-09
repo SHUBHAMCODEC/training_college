@@ -246,7 +246,21 @@ public class tuesday2 {
     }
 
     
+    private static void intersectionOfList(Node ls1,Node ls2){
+        Node curr1=ls1; Node curr2=ls2;
 
+        while(curr1.data!=curr2.data){
+            curr1=curr1.next;
+            curr2=curr2.next;
+            if(curr1==null){
+                curr1=ls2;
+            }else if(curr2==null){
+                curr2=ls1;
+            }
+        }
+
+        System.out.println("Intersection of two List is :"+ curr1.data);
+    }
     private static void ReverseInKgroups(Node head_rev,int k){
         Node curr=head_rev;
         int cnt=1;
