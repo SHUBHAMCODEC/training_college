@@ -1,10 +1,33 @@
 package thoughtWorks;
 
+import java.util.Stack;
+
 
 
 public class monday2nd {
 
+    private static void findMiddleElement(Stack<Integer> st){
+        if (st.isEmpty()) {
+            System.out.println("Stack is empty.");
+            return;
+        }
+        // Direct lookup without any loops
+        int midIndex = st.size() / 2;
+        System.out.println("Middle Element is: " + st.get(midIndex));
+    }
+
     public  static void main(String [] args){
+
+        Stack<Integer> st=new Stack<>();
+        st.push(10);
+        st.push(100);
+        st.push(1000);
+        st.push(10000);
+        st.push(100000);
+        st.push(1000000);
+        st.push(10000000);
+        st.push(100010101);
+
         stack st_arrStack=new stack();
 
         st_arrStack.add(10);
@@ -29,7 +52,7 @@ public class monday2nd {
         //----------------------------------------------------------------
 
         stackByLinkedlist st_ls=new stackByLinkedlist();
-System.out.println("//---------------------------------------------------------------------------//");
+        System.out.println("//---------------------------------------------------------------------------//");
         st_ls.push(1);
         st_ls.push(2);
         st_ls.push(3);
@@ -43,6 +66,35 @@ System.out.println("//----------------------------------------------------------
         st_ls.pop();    
         st_ls.pop();
         st_ls.display();
+
+        System.out.println("=== TESTING ARRAY QUEUE ===");
+        queue_Array arrQueue = new queue_Array();
+        
+        // Test Case 1: Displaying an empty queue
+        arrQueue.display(); 
+        
+        // Test Case 2: Basic insertions (Enqueue)
+        arrQueue.enque(10);
+        arrQueue.enque(20);
+        arrQueue.enque(30);
+        arrQueue.display(); 
+        
+        // Test Case 3: Deleting an element (Dequeue)
+        arrQueue.deque();
+        arrQueue.display();
+
+        System.out.println("\n=== TESTING LINKED LIST QUEUE ===");
+        QueueList listQueue = new QueueList();
+        
+        // Test Case 4: Inserting into linked list queue
+        listQueue.enque(1);
+        listQueue.enque(2);
+        listQueue.enque(3);
+        listQueue.display(); 
+        
+        // Test Case 5: Deleting from linked list queue
+        listQueue.deque();
+        listQueue.display();
 
 
     }
@@ -165,7 +217,7 @@ class QueueList{
         queueLs next;
 
         public queueLs(int data) {
-            this.data;
+            this.data=data;
             this.next=null;
         }
     }
@@ -177,6 +229,7 @@ class QueueList{
         queueLs newEl=new queueLs(data);
         if(rear==null){
             rear= newEl;
+            return;
         }
         queueLs front=rear;
         while(front.next!=null){
