@@ -1,6 +1,8 @@
 package thoughtWorks;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 
@@ -86,42 +88,7 @@ public class monday2nd {
         System.out.println(ls.reversed());
     }
 
-    public static int findCelebrity(int n) {
-        Stack<Integer> st = new Stack<>();
-    
-        // 1. Push all people onto the stack
-        for (int i = 0; i < n; i++) {
-            st.push(i);
-        }
-    
-        // 2. Eliminate until only one candidate is left
-        while (st.size() > 1) {
-            int A = st.pop();
-            int B = st.pop();
-    
-            if (knows(A, B)) {
-                // A knows B -> A is not a celebrity, B might be
-                st.push(B);
-            } else {
-                // A does not know B -> B is not a celebrity, A might be
-                st.push(A);
-            }
-        }
-    
-        // 3. Verify the last remaining candidate
-        int candidate = st.pop();
-    
-        for (int i = 0; i < n; i++) {
-            if (i != candidate) {
-                // If candidate knows someone, or someone doesn't know candidate
-                if (knows(candidate, i) || !knows(i, candidate)) {
-                    return -1; // No celebrity found
-                }
-            }
-        }
-    
-        return candidate;
-    }
+   
     private static void infixToPostfix(String s){
         Stack<Character> st=new Stack<>();
 
@@ -170,8 +137,55 @@ public class monday2nd {
 
         return -1;
     }
+
+    private static void reverseStack(Stack<Integer> st){
+        if(st.isEmpty()){
+            return;
+        }
+        int value=st.pop();
+        reverseStack(st);
+
+        insertAtBottom(st, value);
+
+        System.out.println("reverse adding: "+st);
+
+    }
+    private static void insertAtBottom(Stack<Integer> st, int value) {
+        // Base case: if stack is empty, safe to push the value at the bottom
+        if (st.isEmpty()) {
+            st.push(value);
+            return;
+        }
+        
+        // Hold top element to clear the path to the bottom
+        int topElement = st.pop();
+        
+        // Recursive call to reach the bottom
+        insertAtBottom(st, value);
+        
+        // Push the held element back on top
+        st.push(topElement);
+    }
+
+    private static void ReverseStackUsingQueue(Stack<Integer> st){
+        Queue<Integer> q1=new LinkedList<>();
+
+        while(!st.isEmpty()){
+            q1.add(st.pop());
+        }
+
+        while(!q1.isEmpty()){
+            st.push(q1.peek());
+        }
+    }
     public  static void main(String [] args){
 
+        Stack<Integer> st2=new Stack<>();
+        st2.push(1);
+        st2.push(2);
+        st2.push(3);
+        st2.push(4);
+        reverseStack(st2);
         nextGreaterElement(new int[]{1,2,3,2,4,5});
         System.out.println("reverse String Using Stack: ");
         reverseStringUsingStack("aman");
