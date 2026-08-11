@@ -122,7 +122,54 @@ public class monday2nd {
     
         return candidate;
     }
-    
+    private static void infixToPostfix(String s){
+        Stack<Character> st=new Stack<>();
+
+        StringBuilder sb=new StringBuilder();
+        for(char ch:s.toCharArray()){
+            if(ch=='('){
+                st.push(ch);
+            }else if(ch>='a' && ch<='z' ){
+                sb.append(ch);
+            }
+            else if(ch==')'){
+                while(!st.isEmpty() && st.peek()!='('){
+                    sb.append(st.pop());
+                }
+                if(st.peek()=='('){
+                    st.pop();
+                }
+            }
+            else if(ch=='+'||ch=='-'||ch=='*'||ch=='/'||ch=='^'){
+                while(!st.isEmpty() && st.peek() != '(' && getValue(ch) <= getValue(st.peek())){
+                    sb.append(st.pop());
+                }
+                st.push(ch);
+            }
+        }
+
+        while(!st.isEmpty()){
+            sb.append(st.pop());
+        }
+
+        System.out.println("Infix: "+ s);
+        System.out.println("PostFix: "+ sb.toString());
+    }
+
+    private static int getValue(Character ch){
+        switch(ch){
+            case '+':
+            case '-':
+                return 1;
+            case '*':
+            case '/':
+                return 2;
+            case '^':
+                return 3;
+        }
+
+        return -1;
+    }
     public  static void main(String [] args){
 
         nextGreaterElement(new int[]{1,2,3,2,4,5});
