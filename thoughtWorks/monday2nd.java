@@ -1,5 +1,6 @@
 package thoughtWorks;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 
@@ -16,7 +17,135 @@ public class monday2nd {
         System.out.println("Middle Element is: " + st.get(midIndex));
     }
 
+    private static boolean validParenthesis(String s){
+        if(s==null || s.length()==0){
+            return true;
+        }
+        Stack<Character> st=new Stack<>();
+        for(char c:s.toCharArray()){
+            if(c=='(' || c=='[' || c=='{'){
+                st.push(c);
+            }
+            
+            else if (c == ')' || c == ']' || c == '}') {
+                // If stack is empty when a closing bracket arrives, it's unbalanced
+                if (st.isEmpty()) {
+                    return false;
+                }
+                
+                char top = st.peek();
+                if ((c == ')' && top == '(') || 
+                    (c == ']' && top == '[') || 
+                    (c == '}' && top == '{')) {
+                    st.pop(); // Valid pair found, remove it
+                } else {
+                    return false; // Mismatched brackets (e.g., '(]')
+                }
+            }
+        }
+        if(!st.isEmpty()){
+            return false;
+        }
+        return true;
+    }
+    private static void reverseStringUsingStack(String s){
+        Stack<Character> st=new Stack<>();
+
+        for(char ch:s.toCharArray()){
+            st.push(ch);
+        }
+
+        String s2="";
+        while(!st.isEmpty()){
+            s2+=st.pop();
+        }
+
+        System.out.println("reverse String is: "+ s2);
+
+    }
+
+    private static void nextGreaterElement(int arr[]){
+        ArrayList<Integer> ls=new ArrayList<>();
+        Stack<Integer> st=new Stack<>();
+        
+        for(int i=arr.length-1;i>=0;i--){
+
+            while(!st.isEmpty() && st.peek()<=arr[i]){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                ls.add(-1);
+            }else{
+                ls.add(st.peek());
+            }
+
+            st.push(arr[i]);
+
+        }
+
+        System.out.println(ls.reversed());
+    }
+
+    public static int findCelebrity(int n) {
+        Stack<Integer> st = new Stack<>();
+    
+        // 1. Push all people onto the stack
+        for (int i = 0; i < n; i++) {
+            st.push(i);
+        }
+    
+        // 2. Eliminate until only one candidate is left
+        while (st.size() > 1) {
+            int A = st.pop();
+            int B = st.pop();
+    
+            if (knows(A, B)) {
+                // A knows B -> A is not a celebrity, B might be
+                st.push(B);
+            } else {
+                // A does not know B -> B is not a celebrity, A might be
+                st.push(A);
+            }
+        }
+    
+        // 3. Verify the last remaining candidate
+        int candidate = st.pop();
+    
+        for (int i = 0; i < n; i++) {
+            if (i != candidate) {
+                // If candidate knows someone, or someone doesn't know candidate
+                if (knows(candidate, i) || !knows(i, candidate)) {
+                    return -1; // No celebrity found
+                }
+            }
+        }
+    
+        return candidate;
+    }
+    
     public  static void main(String [] args){
+
+        nextGreaterElement(new int[]{1,2,3,2,4,5});
+        System.out.println("reverse String Using Stack: ");
+        reverseStringUsingStack("aman");
+        reverseStringUsingStack("Shivam");
+        reverseStringUsingStack("naman");
+
+
+        // Test Case 1: Standard valid combinations
+        System.out.println("Test 1 (Valid): " + validParenthesis("()[]{}")); 
+        
+        // Test Case 2: Nested valid combinations
+        System.out.println("Test 2 (Valid Nested): " + validParenthesis("{[()]}")); 
+        
+        // Test Case 3: Mismatched closing bracket
+        System.out.println("Test 3 (Mismatched): " + validParenthesis("(]")); 
+        
+        // Test Case 4: Starting with a closing bracket (Edge Case)
+        System.out.println("Test 4 (Closing First): " + validParenthesis("]")); 
+        
+        // Test Case 5: Unmatched opening bracket at the end
+        System.out.println("Test 5 (Leftover Open): " + validParenthesis("([]")); 
 
         Stack<Integer> st=new Stack<>();
         st.push(10);
@@ -27,7 +156,9 @@ public class monday2nd {
         st.push(1000000);
         st.push(10000000);
         st.push(100010101);
-
+        System.out.println();
+        findMiddleElement(st);
+/*
         stack st_arrStack=new stack();
 
         st_arrStack.add(10);
@@ -94,7 +225,7 @@ public class monday2nd {
         
         // Test Case 5: Deleting from linked list queue
         listQueue.deque();
-        listQueue.display();
+        listQueue.display();*/
 
 
     }
