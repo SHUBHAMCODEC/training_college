@@ -1,7 +1,9 @@
 package thoughtWorks;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -226,6 +228,39 @@ public class monday2nd {
         sort_helper(st, value);
 
         st.push(max);
+    }
+
+    private static List<List<Integer>> mergeInterval(List<List<Integer>> ls){
+        if (ls == null || ls.size() <= 1) {
+            return ls;
+        }
+
+        // 1. Sort intervals by their start values
+        Collections.sort(ls, (a, b) -> Integer.compare(a.get(0), b.get(0)));
+
+        List<List<Integer>> ans = new ArrayList<>();
+        
+        // 2. Initialize with the first interval
+        List<Integer> currentInterval = ls.get(0);
+        ans.add(currentInterval);
+
+        // 3. Iterate and merge
+        for (List<Integer> nextInterval : ls) {
+            int currentEnd = currentInterval.get(1);
+            int nextStart = nextInterval.get(0);
+            int nextEnd = nextInterval.get(1);
+
+            if (currentEnd >= nextStart) {
+                // Overlap detected: Update the end of the current interval
+                currentInterval.set(1, Math.max(currentEnd, nextEnd));
+            } else {
+                // No overlap: Move to the next interval and add it to the answer
+                currentInterval = nextInterval;
+                ans.add(currentInterval);
+            }
+        }
+
+        return ans;
     }
     public  static void main(String [] args){
         Stack<Integer> st3 = new Stack<>();
