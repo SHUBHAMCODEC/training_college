@@ -263,18 +263,25 @@ public class monday2nd {
         return ans;
     }
     private static void validSubstring(String s){
-        Stack<Character> st=new Stack<>();
-        int cnt=0;
-        for(char ch:s.toCharArray()){
+        Stack<Integer> st=new Stack<>();
+        st.push(-1);   // base case boundary
+        int max_len=0;
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+
             if(ch=='('){
-                st.push(ch);
-            }else if(ch==')' && st.peek()=='('){
-                cnt++;
+                st.push(i);
+            }else{
                 st.pop();
+
+                if(!st.isEmpty()){
+                    max_len=Math.max(max_len,i-st.peek());
+                }else{
+                    st.push(i);
+                }
             }
         }
-
-        System.out.println("Valid Substring is: "+ cnt*2);
+        System.out.println("Valid Substring is: "+ max_len);
     }
     public  static void main(String [] args){
 
