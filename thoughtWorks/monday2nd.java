@@ -262,7 +262,23 @@ public class monday2nd {
 
         return ans;
     }
+    private static void validSubstring(String s){
+        Stack<Character> st=new Stack<>();
+        int cnt=0;
+        for(char ch:s.toCharArray()){
+            if(ch=='('){
+                st.push(ch);
+            }else if(ch==')' && st.peek()=='('){
+                cnt++;
+                st.pop();
+            }
+        }
+
+        System.out.println("Valid Substring is: "+ cnt*2);
+    }
     public  static void main(String [] args){
+
+        validSubstring("((()))()()(");
         Stack<Integer> st3 = new Stack<>();
         
         // Push unsorted elements
