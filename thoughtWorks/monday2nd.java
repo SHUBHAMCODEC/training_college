@@ -228,22 +228,7 @@ public class monday2nd {
         st.push(max);
     }
     public  static void main(String [] args){
-        Stack<Integer> st3 = new Stack<>();
         
-        // Push unsorted elements
-        st3.push(34);
-        st3.push(3);
-        st3.push(31);
-        st3.push(98);
-        st3.push(92);
-        st3.push(23);
-
-        System.out.println("Original Stack (Top to Bottom): " + st3);
-
-        // Sort the stack
-        sortedStack(st3);
-
-        System.out.println("Sorted Stack (Top to Bottom):   " + st3);
         infixToPostfix("(a+b*(c-d)/(e+f))*z");
 
         Stack<Integer> st2=new Stack<>();
