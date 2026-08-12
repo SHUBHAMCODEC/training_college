@@ -178,7 +178,73 @@ public class monday2nd {
             st.push(q1.peek());
         }
     }
+
+    private static void infixToPrefix(String s){
+        Stack<Character> st=new Stack<>();
+        StringBuilder sb=new StringBuilder(s);
+        s=sb.reverse().toString();
+        StringBuilder sb2=new StringBuilder();
+        for(char ch:s.toCharArray()){
+            if(ch=='('){
+                st.push(ch);
+            }else if(ch>='a' && ch<='z' || ch>='A' && ch<='Z'){
+                sb2.append(ch);
+            }else if(ch==')'){
+                while(!st.isEmpty() && st.peek()=='('){
+                    sb2.append(st.pop());
+                }
+                if(st.peek()=='('){
+                    st.pop();
+                }
+            }else if(ch=='+' || ch=='-' || ch=='*' || ch=='/' || ch=='^'){
+                while(!st.isEmpty() && getValue(ch)<=getValue(st.peek())){
+                    sb.append(st.p)
+                }
+            }
+        }
+    }
+
+    private static void sortedStack(Stack<Integer> st){
+        if(st.isEmpty()){
+            return;
+        }
+
+        int value=st.pop();
+
+        sortedStack(st);
+
+        sort_helper(st,value);
+    }
+
+    private static void sort_helper(Stack<Integer> st,int value){
+        if(st.isEmpty() ||  value>st.peek()){
+            st.push(value);
+            return;
+        }
+
+        int max=st.pop();
+        sort_helper(st, value);
+
+        st.push(max);
+    }
     public  static void main(String [] args){
+        Stack<Integer> st3 = new Stack<>();
+        
+        // Push unsorted elements
+        st3.push(34);
+        st3.push(3);
+        st3.push(31);
+        st3.push(98);
+        st3.push(92);
+        st3.push(23);
+
+        System.out.println("Original Stack (Top to Bottom): " + st3);
+
+        // Sort the stack
+        sortedStack(st3);
+
+        System.out.println("Sorted Stack (Top to Bottom):   " + st3);
+        infixToPostfix("(a+b*(c-d)/(e+f))*z");
 
         Stack<Integer> st2=new Stack<>();
         st2.push(1);
