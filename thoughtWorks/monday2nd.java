@@ -283,8 +283,46 @@ public class monday2nd {
         }
         System.out.println("Valid Substring is: "+ max_len);
     }
-    public  static void main(String [] args){
 
+    private static void redudentBrackets(String s){
+        Stack<Character> st=new Stack<>();
+        for(char ch:s.toCharArray()){
+
+            if(ch!=')'){
+                st.push(ch);
+            }else{
+                boolean is_operator=false;
+                while(!st.isEmpty() && st.peek()!='('){
+                    char c=st.pop();
+                    if(c=='+' || c=='-' || c=='*' || c=='/' || c=='^'){
+                        is_operator=true;
+                    }
+                }
+                if(!st.isEmpty()){
+                    st.pop();
+                }
+                if(is_operator==false){
+                    System.out.println("Yes, the in given expression redudent brackets exist...");
+                    return;
+                }
+            }
+        }
+
+        System.out.println("NO, in the given string redudant brackets exists...");
+    }
+    public  static void main(String [] args){
+       
+            System.out.println("--- Expecting: REDUNDANT EXIST ---");
+            redudentBrackets("((a+b))");       // Test 1: Double outer brackets
+            redudentBrackets("(a)");           // Test 2: Single character, no operator
+            redudentBrackets("(a+b)+((c+d))"); // Test 3: Mixed valid and redundant sets
+        
+            System.out.println("\n--- Expecting: REDUNDANT DO NOT EXIST ---");
+            redudentBrackets("(a+b)");         // Test 4: Single valid expression
+            redudentBrackets("(a+(b*c))");     // Test 5: Valid nested expressions
+            redudentBrackets("a+b");           // Test 6: No brackets at all
+       
+        
         validSubstring("((()))()()(");
         Stack<Integer> st3 = new Stack<>();
         
