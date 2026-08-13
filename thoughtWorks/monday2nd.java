@@ -611,3 +611,80 @@ class QueueList{
         System.out.println();
     }
 }
+
+class stackUsingQueue{
+
+    static Queue<Integer> q1=new LinkedList<>();
+    static Queue<Integer> q2=new LinkedList<>();
+
+    public void push(int data){
+        if (q1.isEmpty()){
+            q1.add(data);
+        }else{
+            while(!q1.isEmpty()){
+                q2.add(q1.remove());
+            }
+            q1.add(data);
+            while(!q2.isEmpty()){
+                q1.add(q2.remove());
+            }
+        }
+    }
+
+    public void remove(){
+        int value=q1.remove();
+        System.out.println("remove element: "+ value);
+    }
+
+    public void top(){
+        int top=q1.peek();
+        System.out.println("remove element: "+ top);
+    }
+
+    public void display(){
+        System.out.print("Elements of stack using queue: ");
+        for(int i:q1){
+            System.out.println(i+" ");
+        }
+        System.out.println("\n");
+    }
+}
+
+class QueueUsingStack{
+    Stack<Integer> st=new Stack<>();
+    Stack<Integer> st2=new Stack<>();
+
+    public void push(int data){
+        if(st.isEmpty()){
+            st.push(data);
+        }else{
+            while(!st.isEmpty()){
+                st2.push(st.pop());
+            }
+            
+            st.push(data);
+            while(!st2.isEmpty()){
+                st.push(st2.pop());
+            }
+            
+        }
+    }
+
+    public void display(){
+        System.out.print("Queue elements using Stack: ");
+        for(int i:st){
+            System.out.print(i+" ");
+        }
+        System.out.println("\n");
+    }
+
+    public void pop(){
+        int value=st.pop();
+        System.out.println("delete Element is: "+ value);
+    }
+
+    public void top(){
+        int top=st.peek();
+        System.out.println(" top element is: "+ top);
+    }
+}
