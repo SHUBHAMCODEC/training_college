@@ -618,9 +618,7 @@ class stackUsingQueue{
     static Queue<Integer> q2=new LinkedList<>();
 
     public void push(int data){
-        if (q1.isEmpty()){
-            q1.add(data);
-        }else{
+       
             while(!q1.isEmpty()){
                 q2.add(q1.remove());
             }
@@ -628,7 +626,7 @@ class stackUsingQueue{
             while(!q2.isEmpty()){
                 q1.add(q2.remove());
             }
-        }
+        
     }
 
     public void remove(){
@@ -644,7 +642,7 @@ class stackUsingQueue{
     public void display(){
         System.out.print("Elements of stack using queue: ");
         for(int i:q1){
-            System.out.println(i+" ");
+            System.out.print(i+" ");
         }
         System.out.println("\n");
     }
@@ -655,9 +653,7 @@ class QueueUsingStack{
     Stack<Integer> st2=new Stack<>();
 
     public void push(int data){
-        if(st.isEmpty()){
-            st.push(data);
-        }else{
+        
             while(!st.isEmpty()){
                 st2.push(st.pop());
             }
@@ -667,7 +663,7 @@ class QueueUsingStack{
                 st.push(st2.pop());
             }
             
-        }
+        
     }
 
     public void display(){
