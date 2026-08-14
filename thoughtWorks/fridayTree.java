@@ -78,13 +78,55 @@ class binaryTree{
         postorderTraversal(curr.right);
         System.out.print(curr.data+" ");
     }
-
-    public void delete(int target){
-
+    btree curr=root;
+    public btree delete(btree curr,int target){
+        if (curr == null) {
+            return null; 
+        }
+        if (target < curr.data) {
+            curr.left = delete(curr.left, target);
+        } else if (target > curr.data) {
+            curr.right = delete(curr.right, target);
+        } 
+        else {
+            if (curr.left == null) {
+                return curr.right; 
+            }
+            else if (curr.right == null) {
+                return curr.left;
+            }
+            curr.data = minValue(curr.right);
+            curr.right = delete(curr.right, curr.data);
+        }
+        return curr;
     }
-    public void search(int item){
-        for
+    private int minValue(btree curr) {
+        int minv = curr.data;
+        while (curr.left != null) {
+            minv = curr.left.data;
+            curr = curr.left;
+        }
+        return minv;
     }
+
+    public void search(btree curr,int item){
+        if(curr==null){
+            System.out.println(item + " is not in the tree!");
+        }
+        if(curr.data==item){
+            System.out.println(item + " is in the tree!");
+        
+            return;
+        }
+        if(item<curr.data){
+            search(curr.left, item);
+        }else{
+
+            search(curr.right, item);
+        }
+
+       
+         }
 
 
 }
