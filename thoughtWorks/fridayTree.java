@@ -57,6 +57,8 @@ public class fridayTree {
         sv.search(42);
 
         System.out.println("Maximum depth of tree is : "+maxheight(revision.root));
+        System.out.println();
+        System.out.println("------------------- Level Order Traversal ---------------");
         levelOrder(revision.root);
     }
 }
