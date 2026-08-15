@@ -1,5 +1,6 @@
 package thoughtWorks;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import thoughtWorks.revision.revtree;
@@ -40,6 +41,97 @@ public class fridayTree {
             System.out.println();
         }
     }
+
+    private static void invertChild(revision.revtree root){
+        if(root==null){
+            return;
+        }
+        revision.revtree temp=root.left;
+        root.left=root.right;
+        root.right=temp;
+
+        invertChild(root.left);
+        invertChild(root.right);
+
+    }
+
+    private static void minMaxinBST(revision.revtree root){
+        
+        int min=Integer.MAX_VALUE;
+        int max=Integer.MIN_VALUE;
+        int[] result = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        helper(result,root);
+
+        System.out.println("Min: " + result[0] + ", Max: " + result[1]);
+
+        System.out.println("--------2nd Method------------");
+
+        int min2=Integer.MAX_VALUE;
+        int max2=Integer.MIN_VALUE;
+
+        revision.revtree curr=root;
+        while(curr.left!=null){
+            curr=curr.left;
+        }
+        min2=curr.data;
+        curr=root;
+        while(curr.right!=null){
+            curr=curr.right;
+        }
+        max2=curr.data;
+
+        System.out.println("Min: " + min2 + ", Max: " + max2);
+
+
+    }
+    private static void helper(int []result,revision.revtree root){
+        if(root==null){
+            return ;
+        }
+        if(root.data<result[0]){
+            result[0]=root.data;
+        }if(root.data>result[1]){
+            result[1]=root.data;
+        }
+
+        helper(result, root.left);
+        helper(result, root.right); 
+    }
+    private static void validBST(revision.revtree root){
+        ArrayList<Integer> ls=new ArrayList<>();
+        helper(ls, root);
+        
+        for(int i=0;i<ls.size();i++){
+            if(ls.get(i)>=ls.get(i+1)){
+                System.out.println("Not a valid BST...");
+                return;
+            }
+        }
+        System.out.println("Yes it's BST ...");
+    }
+
+    private static void helper(ArrayList<Integer> ls,revision.revtree root){
+        if(root==null){
+            return;
+        }
+        helper(ls, root.left);
+        ls.add(root.data);
+        helper(ls, root.right);
+    }
+
+    private static void inorderPredessorAndSuccessor(revision.revtree root, int target){
+        ArrayList<Integer> ls=new ArrayList<>();
+
+        helper(ls, root);
+
+        for(int i=0;i<ls.size();i++){
+            if(ls.get(i)==target){
+                System.out.println("Inorder Predessor is: "+ ls.get(i-1));
+                System.out.println("Inorder Successor is: "+ ls.get(i+1));
+            }
+        }
+
+    }
     public static void main(String[] args) {
         revision sv=new revision();
         
@@ -60,8 +152,24 @@ public class fridayTree {
         System.out.println();
         System.out.println("------------------- Level Order Traversal ---------------");
         levelOrder(revision.root);
+
+        System.out.println("----------------------inverted child done---------------------");
+        invertChild(revision.root);
+
+        levelOrder(revision.root);
+
+        System.out.println("---------------------MIN/MAX of BST -------------------");
+        minMaxinBST(revision.root);
+
+        System.out.println("----------------------Valid BST------------------");
+        validBST(revision.root);
+
+        System.out.println("---------------------inorder Predessor And Successor-----------");
+        inorderPredessorAndSuccessor(revision.root, 22);
     }
 }
+
+
 
 // class binaryTree{
 //     static class btree{
