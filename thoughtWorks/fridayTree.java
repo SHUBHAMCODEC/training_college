@@ -1,15 +1,44 @@
 package thoughtWorks;
 
-
+import java.util.LinkedList;
+import java.util.Queue;
+import thoughtWorks.revision.revtree;
 
 public class fridayTree {
 
     private static int maxheight(revision.revtree root) {
         if (root == null) return 0;
-        
+
         return Math.max(
             maxheight(root.left), maxheight(root.right)
-        ) + 1;
+        ) +1;
+    }
+
+    private static void levelOrder(revision.revtree root){
+        if(root==null){
+            return;
+        }
+        int p=0;
+        Queue<revision.revtree> q1 = new LinkedList<>();
+        q1.add(root);
+        while(!q1.isEmpty()){
+            int size=q1.size();
+           
+            System.out.print("Nodes at "+p+ " level: ");
+
+            for(int i=0;i<size;i++){
+                revision.revtree curr=q1.poll();
+                System.out.print(curr.data+ " ");
+
+                if(curr.left!=null){
+                    q1.add(curr.left);
+                }if(curr.right!=null){
+                    q1.add(curr.right);
+                }
+            }
+            p++;
+            System.out.println();
+        }
     }
     public static void main(String[] args) {
         revision sv=new revision();
@@ -26,6 +55,9 @@ public class fridayTree {
         sv.search(28);
         sv.search(49);
         sv.search(42);
+
+        System.out.println("Maximum depth of tree is : "+maxheight(revision.root));
+        levelOrder(revision.root);
     }
 }
 
