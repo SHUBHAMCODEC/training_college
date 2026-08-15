@@ -3,6 +3,14 @@ package thoughtWorks;
 
 
 public class fridayTree {
+
+    private static int maxheight(revision.revtree root) {
+        if (root == null) return 0;
+        
+        return Math.max(
+            maxheight(root.left), maxheight(root.right)
+        ) + 1;
+    }
     public static void main(String[] args) {
         revision sv=new revision();
         
