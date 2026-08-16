@@ -132,6 +132,41 @@ public class fridayTree {
         }
 
     }
+
+    private static revision.revtree findLeastCommonAncestors(revision.revtree root,int data1,int data2){
+        if(root==null){
+            return null;
+        } 
+        // logic is just inverted as well calling this function agter inversion of tree .
+        // logic is simple if both values is >root , go with right side , else go with left side.
+        if(root.data<data1 && root.data<data2){
+            return findLeastCommonAncestors(root.left, data1, data2);
+        }if(root.data>data1 && root.data>data2){
+            return findLeastCommonAncestors(root.right, data1, data2);
+        }
+       
+        return root;
+    }
+
+    private static void preorderToBST(int preorder[]){
+        int index=0;
+        construct(preorder,index,Integer.MAX_VALUE);
+    }
+
+    private static revision.revtree construct(int[] preorder,int index, int upperBound){
+        if(index>preorder.length || preorder[index]>upperBound){
+            return  null;
+        }
+
+        revision.revtree root1= new revision.revtree(preorder[index]);
+
+        index++;
+
+        root1.left=construct(preorder, index, root1.data);
+        root1.right=construct(preorder, index, root1.data);
+
+        return root1;
+    }
     public static void main(String[] args) {
         revision sv=new revision();
         
@@ -166,6 +201,15 @@ public class fridayTree {
 
         System.out.println("---------------------inorder Predessor And Successor-----------");
         inorderPredessorAndSuccessor(revision.root, 22);
+        
+        System.out.println("--------------------- Least common Ancestors -----------");
+        revision.revtree lca = findLeastCommonAncestors(revision.root, 22, 26);
+        if (lca != null) {
+            System.out.println(lca.data);
+        } else {
+            System.out.println("-1");
+        }
+        
     }
 }
 
