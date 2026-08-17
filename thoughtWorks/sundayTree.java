@@ -66,24 +66,23 @@ public class sundayTree {
         return value;
     }
 
-    
+
     static tree rootBST=null;
     private static void normalToBST(tree curr){
        ArrayList<Integer> ls=new ArrayList<>();
        ls=inorder(curr, ls);
        Collections.sort(ls);
-
+       rootBST=null;
        for(int i=0;i<ls.size();i++){
-          helper(curr,ls.get(i));  
+          rootBST=helper(rootBST, ls.get(i)); 
        }
-      rootBST=curr;
 
     }
 
     
     private static ArrayList<Integer> inorder(tree curr,ArrayList<Integer> ls){
         if(curr==null){
-            return null;
+            return ls;
         }
         inorder(curr.left, ls);
         ls.add(curr.data);
@@ -107,11 +106,15 @@ public class sundayTree {
 
     private static void validBST(tree rootBST){
         System.out.println("/----------- Checking the tree is now BST or not --------------/");
-        tree curr2=rootBST;
-        ArrayList<Integer> lt=new ArrayList<>();
-        lt=inorder(curr2, lt);
+        if (rootBST == null) {
+            System.out.println("Tree is empty!");
+            return;
+        }
 
-        for(int i=0;i<lt.size();i++){
+        ArrayList<Integer> lt = new ArrayList<>();
+        lt = inorder(rootBST, lt);
+
+        for(int i=0;i<lt.size()-1;i++){
             if(lt.get(i)>lt.get(i+1)){
                 System.out.println(" given tree is not valid BST ...");
                 return;
@@ -119,5 +122,9 @@ public class sundayTree {
         }
 
         System.out.println(" given tree is a valid BST Tree ...");
+    }
+
+    public static void main(String[] args) {
+        
     }
 }
