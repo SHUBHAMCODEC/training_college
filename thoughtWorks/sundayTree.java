@@ -1,5 +1,8 @@
 package thoughtWorks;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class sundayTree {
     static class tree{
         tree left;
@@ -43,11 +46,11 @@ public class sundayTree {
                 return curr.left;
             }if(curr.right!=null){
                 return curr.right;
-            }else{
+            }
                 int min=getMin(curr.right);
                 curr.data=min;
                 curr.right=delete(curr.right, target);
-            }
+            
         }
 
         return curr;
@@ -62,13 +65,59 @@ public class sundayTree {
 
         return value;
     }
-    static tree root2=null;
-    private static void normalToBST(tree curr){
-        if(curr==null){
-            root2=curr;
-        }
-        normalToBST(curr.left);
-        normalToBST(curr.right);
 
+    
+    static tree rootBST=null;
+    private static void normalToBST(tree curr){
+       ArrayList<Integer> ls=new ArrayList<>();
+       ls=inorder(curr, ls);
+       Collections.sort(ls);
+
+       for(int i=0;i<ls.size();i++){
+          helper(curr,ls.get(i));  
+       }
+      rootBST=curr;
+
+    }
+
+    
+    private static ArrayList<Integer> inorder(tree curr,ArrayList<Integer> ls){
+        if(curr==null){
+            return null;
+        }
+        inorder(curr.left, ls);
+        ls.add(curr.data);
+        inorder(curr.right, ls);
+        return ls;
+    }
+
+    private static tree helper(tree curr,int value){
+        if(curr==null){
+            return new tree(value);
+        }
+
+        if(value<curr.data){
+            curr.left=helper(curr.left, value);
+        }else{
+            curr.right=helper(curr.right, value);
+        }
+
+        return curr;
+    }
+
+    private static void validBST(tree rootBST){
+        System.out.println("/----------- Checking the tree is now BST or not --------------/");
+        tree curr2=rootBST;
+        ArrayList<Integer> lt=new ArrayList<>();
+        lt=inorder(curr2, lt);
+
+        for(int i=0;i<lt.size();i++){
+            if(lt.get(i)>lt.get(i+1)){
+                System.out.println(" given tree is not valid BST ...");
+                return;
+            }
+        }
+
+        System.out.println(" given tree is a valid BST Tree ...");
     }
 }
