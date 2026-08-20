@@ -128,6 +128,10 @@ public class sundayTree {
 
         System.out.println(" given tree is a valid BST Tree ...");
     }
+
+    tree first;
+    tree second;
+    tree prev;
      public static List<List<Integer>> helper(TreeNode root,List<List<Integer>> ls){
          if (root == null) {
             return ls;
@@ -181,7 +185,33 @@ public class sundayTree {
 
         return true;
     }
+    public void recoverTree(TreeNode root) {
+        helper(root);
+        // Swap the values of the two misplaced nodes
+        int temp = first.val;
+        first.val = second.val;
+        second.val = temp;
+    }
 
+    void helper(TreeNode node) {
+        if (node == null) return;
+
+        // Traverse left subtree
+        helper(node.left);
+
+        // Detect swapped nodes
+        if (prev != null && prev.val > node.val) {
+            if (first == null) {
+                first = prev;
+            }
+            second = node;
+        }
+
+        prev = node;
+
+        // Traverse right subtree
+        helper(node.right);
+    }
     public static void main(String[] args) {
         
     }
