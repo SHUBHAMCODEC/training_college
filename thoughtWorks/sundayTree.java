@@ -2,6 +2,11 @@ package thoughtWorks;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+import javax.swing.tree.TreeNode;
 
 public class sundayTree {
     static class tree{
@@ -122,6 +127,37 @@ public class sundayTree {
         }
 
         System.out.println(" given tree is a valid BST Tree ...");
+    }
+     public static List<List<Integer>> helper(TreeNode root,List<List<Integer>> ls){
+         if (root == null) {
+            return ls;
+        }
+        Queue<TreeNode> q1=new LinkedList<>();
+        q1.add(root);
+        while(!q1.isEmpty()){
+            List<Integer> sub=new ArrayList<>();
+            int size=q1.size();
+
+            for(int i=0;i<size;i++){
+                TreeNode curr=q1.poll();
+                sub.add(curr.val);
+
+                if(curr.left!=null){
+                    q1.add(curr.left);
+                }if(curr.right!=null){
+                    q1.add(curr.right);
+                }
+            }
+            ls.add(sub);
+        }
+
+        return ls;
+    }
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> ls=new ArrayList<>();
+        helper(root,ls);
+
+        return ls;
     }
 
     public static void main(String[] args) {
