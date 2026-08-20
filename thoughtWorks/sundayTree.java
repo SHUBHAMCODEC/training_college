@@ -160,6 +160,28 @@ public class sundayTree {
         return ls;
     }
 
+    private static ArrayList<Integer> helper(TreeNode root,ArrayList ls){
+        if(root==null){
+            return ls;
+        }
+        helper(root.left,ls);
+        ls.add(root.val);
+        helper(root.right,ls);
+
+        return ls;
+    }
+    public boolean isValidBST(TreeNode root) {
+        ArrayList<Integer> ls=new ArrayList<>();
+        helper(root,ls);
+        for(int i=0;i<ls.size()-1;i++){
+            if(ls.get(i)>=ls.get(i+1)){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public static void main(String[] args) {
         
     }
