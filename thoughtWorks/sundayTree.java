@@ -95,7 +95,7 @@ public class sundayTree {
         return ls;
     }
 
-    private static tree helper(tree curr,int value){
+    private static tree helper(tree curr,int value){ // helper function for checking the valid BST or not
         if(curr==null){
             return new tree(value);
         }
@@ -132,7 +132,7 @@ public class sundayTree {
     tree first;
     tree second;
     tree prev;
-     public static List<List<Integer>> helper(TreeNode root,List<List<Integer>> ls){
+     public static List<List<Integer>> helper(TreeNode root,List<List<Integer>> ls){//helper function for performing the level order traversal
          if (root == null) {
             return ls;
         }
