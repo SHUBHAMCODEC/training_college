@@ -109,25 +109,7 @@ public class sundayTree {
         return curr;
     }
 
-    private static void validBST(tree rootBST){
-        System.out.println("/----------- Checking the tree is now BST or not --------------/");
-        if (rootBST == null) {
-            System.out.println("Tree is empty!");
-            return;
-        }
-
-        ArrayList<Integer> lt = new ArrayList<>();
-        lt = inorder(rootBST, lt);
-
-        for(int i=0;i<lt.size()-1;i++){
-            if(lt.get(i)>lt.get(i+1)){
-                System.out.println(" given tree is not valid BST ...");
-                return;
-            }
-        }
-
-        System.out.println(" given tree is a valid BST Tree ...");
-    }
+    
 
     tree first;
     tree second;
