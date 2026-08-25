@@ -78,7 +78,63 @@ public class newDay {
         }
     }
 
+    private static void recurName(String s,int n){
+        if(n==0){
+            return;
+        }
+        System.out.print(s+" ");
+        recurName(s, n-1);
+    }
+    private static void recur1ToN(int i,int n){
+        if(i==n+1){
+            return;
+        }
+        System.out.print(i+" ");
+        recur1ToN(i+1, n);
+    }
+    private static void recurNto1(int n){
+        if(n==0){
+            return;
+        }
+        System.out.print(n+" ");
+        recurNto1(n-1);
+    }
+    private static void recurSumofN(int n,int sum){
+        if(n==0){
+            System.out.println(" sum is of First N number is: "+ sum);
+            return;
+        }
+        sum+=n;
+        recurSumofN(n-1, sum);
+    }
     
+    private static void recurFactorialofN(int n,int fact){
+        if(n==0){
+            System.out.println(" sum is of First N number is: "+ sum);
+            return;
+        }
+        fact*=n;
+        recurFactorialofN(n-1, fact);
+        
+    }
+    private static void reverseArray(int[] arr,int i){
+        if (i >= arr.length / 2) {
+            return; 
+        }
+        
+        // Calculate the exact matching index on the opposite side
+        int mirrorIndex = arr.length - 1 - i;
+        
+        // Perform an actual in-place swap on the array
+        int temp = arr[i];
+        arr[i] = arr[mirrorIndex];
+        arr[mirrorIndex] = temp;
+        
+        // Recursive call for the next pair
+        reverseArray(arr, i + 1);
+
+    }
+
     public static void main(String[] args) {
             CountAllDigit(4578962);
     }
